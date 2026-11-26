@@ -1,8 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/core/storage/data/export.dart';
 import 'package:flutter_pos/core/storage/domain/export.dart';
 
+@LazySingleton(as: StorageRepository)
 class StorageRepositoryImpl implements StorageRepository {
   final PingService pingService;
   final StorageDataSource storageRemoteDataSource;

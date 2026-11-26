@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/core/constants/export.dart';
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_pos/core/sync/queued_action/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 import 'package:flutter_pos/features/transactions/domain/export.dart';
 
+@LazySingleton(as: TransactionRepository)
 class TransactionRepositoryImpl extends TransactionRepository {
   final PingService pingService;
   final TransactionLocalDatasource transactionLocalDatasource;

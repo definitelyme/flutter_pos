@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/core/constants/export.dart';
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_pos/core/sync/queued_action/data/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/account/domain/export.dart';
 
+@LazySingleton(as: UserRepository)
 class UserRepositoryImpl extends UserRepository {
   final PingService pingService;
   final UserLocalDatasource userLocalDatasource;

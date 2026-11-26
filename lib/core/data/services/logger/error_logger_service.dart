@@ -1,17 +1,19 @@
 import 'dart:async';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:flutter_pos/utils/utils.dart';
 
 /// Global error logging service
+@lazySingleton
 class ErrorLoggerService {
   final FirebaseCrashlytics _crashlytics;
   final DebugModeWrapper _debugMode;
 
   ErrorLoggerService(
     this._crashlytics, {
-    DebugModeWrapper? debugMode,
+    @ignoreParam DebugModeWrapper? debugMode,
   }) : _debugMode = debugMode ?? DebugModeWrapper();
 
   /// Log error to Firebase Crashlytics

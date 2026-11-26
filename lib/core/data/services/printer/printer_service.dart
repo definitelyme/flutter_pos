@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:injectable/injectable.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/transactions/domain/export.dart';
 import 'package:flutter_pos/utils/utils.dart';
 
+@lazySingleton
 class PrinterService {
   final PrinterManager _manager = PrinterManager();
   final SharedPreferences _sharedPreferences;

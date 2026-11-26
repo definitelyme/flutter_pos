@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:flutter_pos/core/data/export.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 
+@LazySingleton(as: TransactionLocalDatasource)
 class TransactionLocalDatasourceImpl implements TransactionLocalDatasource {
   final DatabaseService _databaseService;
 

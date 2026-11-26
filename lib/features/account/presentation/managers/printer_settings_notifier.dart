@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
 import 'package:flutter_pos/core/constants/export.dart';
@@ -13,6 +14,8 @@ final printerSettingsNotifierProvider = NotifierProvider.autoDispose<PrinterSett
 );
 
 class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> {
+  SharedPreferences get _sharedPreferences => getIt();
+
   @override
   PrinterSettingsState build() {
     final printerService = ref.watch(printerServiceProvider);
@@ -59,7 +62,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     if (state.isScanning || state.isDisconnecting) return;
 
     final printerService = ref.read(printerServiceProvider);
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
+    final sharedPreferences = _sharedPreferences;
 
     state = state.copyWith(isScanning: true);
 
@@ -86,7 +89,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
 
   Future<void> onSelectPrinter(PrinterDevice printer) async {
     final printerService = ref.read(printerServiceProvider);
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
+    final sharedPreferences = _sharedPreferences;
 
     final deviceId = printerService.getDeviceId(printer);
     if (state.connectingDeviceId == deviceId || state.isDisconnecting) return;
@@ -109,7 +112,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     if (state.isDisconnecting || state.connectingDeviceId != null) return;
 
     final printerService = ref.read(printerServiceProvider);
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
+    final sharedPreferences = _sharedPreferences;
 
     state = state.copyWith(isDisconnecting: true);
 

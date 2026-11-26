@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/utils/utils.dart';
 
+@lazySingleton
 class PingService {
   Process? _process;
 

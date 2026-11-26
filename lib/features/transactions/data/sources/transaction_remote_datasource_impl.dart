@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 
+@LazySingleton(as: TransactionRemoteDatasource)
 class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
   final FirebaseFirestore _firebaseFirestore;
 

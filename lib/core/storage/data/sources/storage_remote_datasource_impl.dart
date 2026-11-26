@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/core/storage/data/export.dart';
 
+@LazySingleton(as: StorageDataSource)
 class StorageRemoteDataSourceImpl implements StorageDataSource {
   final FirebaseStorage _firebaseStorage;
 

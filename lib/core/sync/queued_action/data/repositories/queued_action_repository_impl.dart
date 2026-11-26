@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 import 'package:flutter_pos/utils/utils.dart';
 
+@LazySingleton(as: QueuedActionRepository)
 class QueuedActionRepositoryImpl extends QueuedActionRepository {
   final PingService pingService;
   final QueuedActionDatasource queuedActionLocalDatasource;

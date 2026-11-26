@@ -1,8 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/domain/export.dart';
 import 'package:flutter_pos/features/auth/data/export.dart';
 import 'package:flutter_pos/features/auth/domain/export.dart';
 
+@LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource authRemoteDataSource;
 

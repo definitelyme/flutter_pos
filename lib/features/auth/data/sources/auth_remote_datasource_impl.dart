@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:flutter_pos/config/export.dart';
 import 'package:flutter_pos/core/constants/export.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/auth/data/export.dart';
 import 'package:flutter_pos/utils/utils.dart';
 
+@LazySingleton(as: AuthDataSource)
 class AuthRemoteDataSourceImpl implements AuthDataSource {
   final firebase_auth.FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;

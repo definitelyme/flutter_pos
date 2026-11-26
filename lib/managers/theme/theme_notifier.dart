@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:flutter_pos/core/constants/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
@@ -10,9 +11,11 @@ final themeNotifierProvider = NotifierProvider<ThemeNotifier, ThemeState>(
 );
 
 class ThemeNotifier extends Notifier<ThemeState> {
+  SharedPreferences get _sharedPreferences => getIt();
+
   @override
   ThemeState build() {
-    final sharedPreferences = ref.watch(sharedPreferencesProvider);
+    final sharedPreferences = _sharedPreferences;
     final value = sharedPreferences.getString(Constants.selectedBrightnessKey);
     final isLight = value == 'light';
     final brightness = isLight ? Brightness.light : Brightness.dark;
@@ -24,7 +27,7 @@ class ThemeNotifier extends Notifier<ThemeState> {
   }
 
   void changeBrightness(bool isLight) async {
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
+    final sharedPreferences = _sharedPreferences;
     await sharedPreferences.setString(
       Constants.selectedBrightnessKey,
       isLight ? 'light' : 'dark',

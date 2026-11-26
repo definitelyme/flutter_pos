@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 
+@LazySingleton(as: UserLocalDatasource)
 class UserLocalDatasourceImpl implements UserLocalDatasource {
   final DatabaseService _databaseService;
 

@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart';
 
+@LazySingleton(as: QueuedActionDatasource)
 class QueuedActionLocalDatasourceImpl extends QueuedActionDatasource {
   final DatabaseService _databaseService;
 
