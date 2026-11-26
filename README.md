@@ -41,78 +41,63 @@ The app prioritizes local-first operations, storing all data in SQLite and autom
 ```
 flutter_pos/
 ├── lib/
-│   ├── app/                          # Application setup and configuration
-│   │   ├── di/                       # Dependency injection
-│   │   ├── error/                    # Error handling
-│   │   └── routes/                   # App routing and navigation
+│   ├── main.dart                     # App entry point
+│   ├── app_view.dart                 # Root widget (theme, routing, locale)
+│   ├── bootstrap/                    # Startup: Firebase, emulators, dependencies
+│   ├── config/                       # Firebase options, emulator host, test account
+│   ├── managers/                     # App-wide wiring
+│   │   ├── navigation/               # Routes and route params
+│   │   ├── registry/                 # Dependency injection (get_it, injectable)
+│   │   └── theme/                    # Light and dark theme state
 │   │
-│   ├── core/                         # Core utilities and shared resources
-│   │   ├── assets/                   # Asset management
-│   │   ├── common/                   # Common utilities (Result wrapper)
+│   ├── core/                         # Code shared by all features
+│   │   ├── assets/                   # Asset paths
 │   │   ├── constants/                # App constants
-│   │   ├── extensions/               # Dart extensions
 │   │   ├── locale/                   # Localization
-│   │   ├── services/                 # Core services
-│   │   │   ├── connectivity/         # Network connectivity checking
-│   │   │   ├── database/             # Local database service (sqflite)
-│   │   │   ├── info/                 # Device info service
-│   │   │   ├── logger/               # Error logging service
-│   │   │   └── printer/              # Thermal printer service
-│   │   ├── themes/                   # App theming (colors, sizes, themes)
-│   │   ├── usecase/                  # Base usecase interface
-│   │   └── utilities/                # Helper utilities (formatters, loggers, etc.)
+│   │   ├── data/services/            # Connectivity, database (sqflite), device info, logger, printer
+│   │   ├── domain/                   # Result wrapper, use case base class, params
+│   │   ├── presentation/             # Shared screens, widgets, theme, error views
+│   │   ├── storage/                  # File storage (data, domain)
+│   │   └── sync/queued_action/       # Offline action queue (data, domain)
 │   │
-│   ├── data/                         # Data layer
-│   │   ├── datasources/              # Data sources
-│   │   │   ├── interfaces/           # Datasource interfaces
-│   │   │   ├── local/                # Local datasources (sqflite)
-│   │   │   └── remote/               # Remote datasources (Firestore, Firebase Auth)
-│   │   ├── models/                   # Data models with JSON serialization
-│   │   └── repositories/             # Repository implementations
+│   ├── utils/                        # Formatters, launcher, logger and other helpers
 │   │
-│   ├── domain/                       # Domain layer (Business logic)
-│   │   ├── entities/                 # Business entities
-│   │   ├── repositories/             # Repository interfaces
-│   │   └── usecases/                 # Use cases (business logic operations)
-│   │
-│   ├── presentation/                 # Presentation layer (UI)
-│   │   ├── providers/                # State management (Riverpod)
-│   │   │   ├── account/              # Account-related state
-│   │   │   ├── auth/                 # Authentication state
-│   │   │   ├── home/                 # Home screen state
-│   │   │   ├── main/                 # Main navigation state
-│   │   │   ├── products/             # Products management state
-│   │   │   ├── theme/                # Theme state
-│   │   │   └── transactions/         # Transactions state
-│   │   ├── screens/                  # UI screens
-│   │   │   ├── account/              # Account screens
-│   │   │   ├── auth/                 # Authentication screens
-│   │   │   ├── error/                # Error screens
-│   │   │   ├── home/                 # Home/POS screen
-│   │   │   ├── main/                 # Main navigation screen
-│   │   │   ├── products/             # Product management screens
-│   │   │   └── transactions/         # Transaction history screens
-│   │   └── widgets/                  # Reusable UI components
-│   │
-│   ├── firebase_options.dart         # Firebase configuration
-│   └── main.dart                     # App entry point
+│   └── features/                     # One folder per feature
+│       ├── account/
+│       ├── auth/
+│       ├── home/
+│       ├── main/
+│       ├── products/
+│       ├── welcome/
+│       └── transactions/             # Expanded here as an example
+│           ├── data/
+│           │   ├── models/           # Models with JSON serialization
+│           │   ├── sources/          # Local (sqflite) and remote (Firestore) datasources
+│           │   ├── repositories/     # Repository implementations
+│           │   └── export.dart       # Barrel file
+│           ├── domain/
+│           │   ├── entities/         # Business entities
+│           │   ├── repositories/     # Repository interfaces
+│           │   ├── usecases/         # Use cases
+│           │   └── export.dart
+│           ├── presentation/
+│           │   ├── managers/         # State management (Riverpod)
+│           │   ├── screens/          # Screens
+│           │   ├── widgets/          # Feature widgets
+│           │   └── export.dart
 │
-├── test/                             # Unit and widget tests
-│   ├── core/services/                # Service tests
-│   ├── data/                         # Data layer tests
-│   │   ├── datasources/              # Datasource tests
-│   │   └── repositories/             # Repository tests
-│   ├── domain/usecases/              # Usecase tests
-│   └── presentation/screens/         # Screen tests
+├── test/                             # Mirrors lib/
+│   ├── core/                         # Core service, storage and sync tests
+│   ├── features/                     # Datasource, repository and use case tests per feature
+│   └── helpers/                      # Shared fixtures and in-memory test database
 │
-├── assets/                           # Static assets
-├── android/                          # Android platform files
-├── ios/                              # iOS platform files
-├── linux/                            # Linux platform files
-├── macos/                            # macOS platform files
-├── web/                              # Web platform files
-├── windows/                          # Windows platform files
+├── tool/emulators/                   # start.sh runs the emulators, seed.sh rebuilds the seed
+├── firebase/emulator-seed/           # Seed data the emulators start from
 │
+├── firebase.json                     # Firebase emulator configuration
+├── .firebaserc                       # Firebase project alias (demo-flutter-pos)
+├── firestore.rules                   # Firestore security rules
+├── storage.rules                     # Storage security rules
 ├── analysis_options.yaml             # Dart analyzer configuration
 ├── pubspec.yaml                      # Package dependencies
 └── README.md                         # Project documentation
