@@ -1,0 +1,9 @@
+export 'package:flutter_pos/features/products/presentation/managers/product_detail_notifier.dart';
+export 'package:flutter_pos/features/products/presentation/managers/product_form_notifier.dart';
+export 'package:flutter_pos/features/products/presentation/managers/product_form_state.dart';
+export 'package:flutter_pos/features/products/presentation/managers/products_notifier.dart';
+export 'package:flutter_pos/features/products/presentation/managers/products_state.dart';
+export 'package:flutter_pos/features/products/presentation/screens/product_detail_screen.dart';
+export 'package:flutter_pos/features/products/presentation/screens/product_form_screen.dart';
+export 'package:flutter_pos/features/products/presentation/screens/products_screen.dart';
+export 'package:flutter_pos/features/products/presentation/widgets/products_card.dart';
