@@ -6,8 +6,8 @@ import 'package:flutter_pos/core/locale/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
 import 'package:flutter_pos/managers/export.dart';
 
-class App extends ConsumerWidget {
-  const App({super.key});
+class AppView extends ConsumerWidget {
+  const AppView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

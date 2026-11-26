@@ -2,6 +2,8 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../helpers/export.dart';
+
 void main() {
   late TransactionRemoteDatasourceImpl datasource;
   late FakeFirebaseFirestore fakeFirestore;
@@ -18,34 +20,6 @@ void main() {
       'email': 'test@example.com',
     });
   });
-
-  TransactionModel createSampleTransaction({
-    int id = 1,
-    String createdById = userId,
-    int totalAmount = 1,
-  }) {
-    return TransactionModel(
-      id: id,
-      createdById: createdById,
-      paymentMethod: 'Cash',
-      receivedAmount: totalAmount,
-      returnAmount: 0,
-      totalAmount: totalAmount,
-      totalOrderedProduct: 1,
-      orderedProducts: [
-        OrderedProductModel(
-          id: 1,
-          transactionId: id,
-          productId: 1,
-          quantity: 1,
-          stock: 1,
-          name: 'Sample Product',
-          imageUrl: '',
-          price: totalAmount,
-        ),
-      ],
-    );
-  }
 
   group('TransactionRemoteDatasourceImpl', () {
     group('createTransaction', () {

@@ -1,38 +1,18 @@
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+import '../../../../helpers/export.dart';
 
 void main() {
   late DatabaseService appDatabase;
   late UserLocalDatasourceImpl datasource;
-  late Database testDatabase;
 
   setUpAll(() async {
-    // Initialize FFI for SQFlite
-    sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
-
-    // Open an in-memory database for testing
-    testDatabase = await openDatabase(inMemoryDatabasePath, version: 1);
-
-    appDatabase = DatabaseService.instance;
-    await appDatabase.initTestDatabase(testDatabase: testDatabase);
+    appDatabase = await setUpTestDatabase();
 
     datasource = UserLocalDatasourceImpl(appDatabase);
   });
-
-  UserModel createSampleUser({
-    String id = 'user123',
-    String name = 'Sample User',
-    String imageUrl = '',
-  }) {
-    return UserModel(
-      id: id,
-      name: name,
-      imageUrl: imageUrl,
-    );
-  }
 
   group('UserLocalDatasourceImpl', () {
     group('createUser', () {

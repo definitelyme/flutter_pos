@@ -1,41 +1,20 @@
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+import '../../../../helpers/export.dart';
 
 void main() {
   late DatabaseService appDatabase;
   late ProductLocalDatasourceImpl datasource;
-  late Database testDatabase;
 
   setUpAll(() async {
-    // Initialize FFI (Foreign Function Interface) for SQFlite
-    sqfliteFfiInit();
-    // Change the default factory for unit testing calls to use FFI
-    databaseFactory = databaseFactoryFfi;
-
-    // Open an in-memory database for testing
-    testDatabase = await openDatabase(inMemoryDatabasePath, version: 1);
-
-    appDatabase = DatabaseService.instance;
-    await appDatabase.initTestDatabase(testDatabase: testDatabase);
+    appDatabase = await setUpTestDatabase();
 
     datasource = ProductLocalDatasourceImpl(appDatabase);
   });
 
   const userId = 'user123';
-
-  ProductModel createSampleProduct({int id = 1}) {
-    return ProductModel(
-      id: id,
-      name: 'Sample Product',
-      createdById: userId,
-      imageUrl: '',
-      price: 42,
-      sold: 10,
-      stock: 50,
-    );
-  }
 
   group('ProductLocalDatasourceImpl', () {
     group('createProduct', () {

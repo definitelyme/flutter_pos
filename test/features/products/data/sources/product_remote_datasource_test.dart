@@ -2,6 +2,8 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../helpers/export.dart';
+
 void main() {
   late ProductRemoteDatasourceImpl datasource;
   late FakeFirebaseFirestore fakeFirestore;
@@ -12,18 +14,6 @@ void main() {
   });
 
   const userId = 'user123';
-
-  ProductModel createSampleProduct({int id = 1}) {
-    return ProductModel(
-      id: id,
-      name: 'Sample Product',
-      createdById: userId,
-      imageUrl: '',
-      price: 42,
-      sold: 10,
-      stock: 50,
-    );
-  }
 
   group('ProductRemoteDatasourceImpl', () {
     group('createProduct', () {

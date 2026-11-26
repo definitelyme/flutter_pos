@@ -2,6 +2,8 @@ import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../../helpers/export.dart';
+
 void main() {
   late UserRemoteDatasourceImpl datasource;
   late FakeFirebaseFirestore fakeFirestore;
@@ -10,18 +12,6 @@ void main() {
     fakeFirestore = FakeFirebaseFirestore();
     datasource = UserRemoteDatasourceImpl(fakeFirestore);
   });
-
-  UserModel createSampleUser({
-    String id = 'user123',
-    String name = 'Sample User',
-    String imageUrl = '',
-  }) {
-    return UserModel(
-      id: id,
-      name: name,
-      imageUrl: imageUrl,
-    );
-  }
 
   group('UserRemoteDatasourceImpl', () {
     group('createUser', () {

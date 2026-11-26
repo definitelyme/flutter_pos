@@ -120,71 +120,50 @@ flutter_pos/
 
 ## Getting Started
 
+The app talks to the Firebase Emulator Suite on your machine, so you do not need a Firebase project to try it.
+
 ### Prerequisites
 
-- [Flutter](https://flutter.dev/docs/get-started/install)
-- [Dart](https://dart.dev/get-dart)
-- Firebase account for backend services
+- [fvm](https://fvm.app/), which installs the Flutter version this repo pins in `.fvmrc`
+- Java 21 or newer on your `PATH`, which the Firebase emulators need
+- Node.js, so `npx` can run the Firebase CLI
+- An Android emulator or a phone
 
-### Installation
+### Set up
 
-1. **Clone the repository:**
+Clone the repository and install the pinned Flutter version:
 
-   ```sh
-   git clone https://github.com/elrizwiraswara/flutter_pos.git
-   cd flutter_pos
-   ```
+```sh
+git clone https://github.com/elrizwiraswara/flutter_pos.git
+cd flutter_pos
+fvm install
+fvm use
+flutter pub get
+```
 
-2. **Install dependencies:**
+### Start the emulators
 
-   ```sh
-   flutter pub get
-   ```
+Run this in its own terminal and leave it open:
 
-3. **Set up Firebase:**
-   - Create a new project on [Firebase](https://firebase.google.com/).
-   - Follow the instructions to add Firebase to your Flutter app [here](https://firebase.google.com/docs/flutter/setup).
-   - Enable google authentication provider
-   - Update cloud firestore rules to allow read write operation
-     <br/>
+```sh
+tool/emulators/start.sh
+```
 
-   ```
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       match /{document=**} {
-         allow read, write: if request.auth != null;
-       }
-     }
-   }
-   ```
+Every start begins from the seed data in `firebase/emulator-seed/`, so product stock is back to 10 each time. If you change the seed, `tool/emulators/seed.sh` rebuilds it. The Emulator UI is at <http://localhost:4000>.
 
-   - Add cloud firestore indexes to enable query
-   - Update firebase storage rules to allow read write operation
-     <br/>
+### Run the app
 
-   ```
-   service firebase.storage {
-     match /b/{bucket}/o {
-       match /{allPaths=**} {
-         allow read, write: if request.auth != null;
-       }
-     }
-   }
-   ```
+On the Android emulator, run `flutter run`. In VS Code, use the default launch configuration, "flutter_pos".
 
-4. **Set up your `config.json` file**
-   <br/> `GOOGLE_SERVER_CLIENT_ID` is `Web client ID` that you can get from your Firebase Google sign-in method provider
+Debug builds show a "Sign in with test account" button on the sign-in screen. The account is `cashier@flutterpos.test` with the password `cashier123`. Release builds do not have it.
 
-   ```
-   {
-     "GOOGLE_SERVER_CLIENT_ID": "xxxxxxxxxxxxx.apps.googleusercontent.com"
-   }
-   ```
+To run on a phone on the same Wi-Fi, pass your computer's LAN IP address:
 
-5. **Run the application:**
-   ```sh
-   flutter run --dart-define-from-file config.json
-   ```
+```sh
+flutter run --dart-define=EMULATOR_HOST=<your computer's LAN IP>
+```
+
+The Google sign-in launch configuration still reads `GOOGLE_SERVER_CLIENT_ID` from a `config.json` file, passed with `--dart-define-from-file config.json`.
 
 ### Test
 

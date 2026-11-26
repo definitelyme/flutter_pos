@@ -1,57 +1,20 @@
 import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+import '../../../../helpers/export.dart';
 
 void main() {
   late DatabaseService appDatabase;
   late TransactionLocalDatasourceImpl datasource;
-  late Database testDatabase;
 
   setUpAll(() async {
-    // Initialize FFI (Foreign Function Interface) for SQFlite
-    sqfliteFfiInit();
-    // Change the default factory for unit testing calls to use FFI
-    databaseFactory = databaseFactoryFfi;
-
-    // Open an in-memory database for testing
-    testDatabase = await openDatabase(inMemoryDatabasePath, version: 1);
-
-    appDatabase = DatabaseService.instance;
-    await appDatabase.initTestDatabase(testDatabase: testDatabase);
+    appDatabase = await setUpTestDatabase();
 
     datasource = TransactionLocalDatasourceImpl(appDatabase);
   });
 
   const userId = 'user123';
-
-  TransactionModel createSampleTransaction({
-    int id = 1,
-    String createdById = userId,
-    int totalAmount = 1,
-  }) {
-    return TransactionModel(
-      id: id,
-      createdById: createdById,
-      paymentMethod: 'Cash',
-      receivedAmount: totalAmount,
-      returnAmount: 0,
-      totalAmount: totalAmount,
-      totalOrderedProduct: 1,
-      orderedProducts: [
-        OrderedProductModel(
-          id: 1,
-          transactionId: id,
-          productId: 1,
-          quantity: 1,
-          stock: 1,
-          name: 'Sample Product',
-          imageUrl: '',
-          price: totalAmount,
-        ),
-      ],
-    );
-  }
 
   group('TransactionLocalDatasourceImpl', () {
     // Test: createTransaction inserts the transaction into the database
