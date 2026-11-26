@@ -17,24 +17,24 @@ import 'queued_action_repository_impl_test.mocks.dart';
 @GenerateMocks([
   PingService,
   QueuedActionDatasource,
-  UserRemoteDatasourceImpl,
-  TransactionRemoteDatasourceImpl,
-  ProductRemoteDatasourceImpl,
+  UserRemoteDatasource,
+  TransactionRemoteDatasource,
+  ProductRemoteDatasource,
 ])
 void main() {
   late QueuedActionRepositoryImpl repository;
   late MockPingService mockPingService;
   late MockQueuedActionDatasource mockQueuedActionDatasource;
-  late MockUserRemoteDatasourceImpl mockUserRemoteDatasource;
-  late MockTransactionRemoteDatasourceImpl mockTransactionRemoteDatasource;
-  late MockProductRemoteDatasourceImpl mockProductRemoteDatasource;
+  late MockUserRemoteDatasource mockUserRemoteDatasource;
+  late MockTransactionRemoteDatasource mockTransactionRemoteDatasource;
+  late MockProductRemoteDatasource mockProductRemoteDatasource;
 
   setUp(() {
     mockPingService = MockPingService();
     mockQueuedActionDatasource = MockQueuedActionDatasource();
-    mockUserRemoteDatasource = MockUserRemoteDatasourceImpl();
-    mockTransactionRemoteDatasource = MockTransactionRemoteDatasourceImpl();
-    mockProductRemoteDatasource = MockProductRemoteDatasourceImpl();
+    mockUserRemoteDatasource = MockUserRemoteDatasource();
+    mockTransactionRemoteDatasource = MockTransactionRemoteDatasource();
+    mockProductRemoteDatasource = MockProductRemoteDatasource();
 
     // Provide dummy values for Mockito
     provideDummy<Result<List<QueuedActionModel>>>(

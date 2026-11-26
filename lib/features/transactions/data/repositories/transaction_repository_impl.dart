@@ -9,8 +9,8 @@ import 'package:flutter_pos/features/transactions/domain/export.dart';
 
 class TransactionRepositoryImpl extends TransactionRepository {
   final PingService pingService;
-  final TransactionLocalDatasourceImpl transactionLocalDatasource;
-  final TransactionRemoteDatasourceImpl transactionRemoteDatasource;
+  final TransactionLocalDatasource transactionLocalDatasource;
+  final TransactionRemoteDatasource transactionRemoteDatasource;
   final QueuedActionDatasource queuedActionLocalDatasource;
 
   TransactionRepositoryImpl({

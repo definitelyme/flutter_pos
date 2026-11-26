@@ -9,8 +9,8 @@ import 'package:flutter_pos/features/products/domain/export.dart';
 
 class ProductRepositoryImpl extends ProductRepository {
   final PingService pingService;
-  final ProductLocalDatasourceImpl productLocalDatasource;
-  final ProductRemoteDatasourceImpl productRemoteDatasource;
+  final ProductLocalDatasource productLocalDatasource;
+  final ProductRemoteDatasource productRemoteDatasource;
   final QueuedActionDatasource queuedActionLocalDatasource;
 
   ProductRepositoryImpl({

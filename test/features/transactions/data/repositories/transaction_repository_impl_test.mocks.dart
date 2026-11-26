@@ -6,7 +6,8 @@
 
 import 'dart:async' as _i3;
 
-import 'package:flutter_pos/core/data/export.dart' as _i2;
+import 'package:flutter_pos/core/data/services/connectivity/ping_service.dart'
+    as _i2;
 import 'package:flutter_pos/core/domain/export.dart' as _i5;
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart' as _i7;
 import 'package:flutter_pos/features/transactions/data/export.dart' as _i4;
@@ -133,12 +134,12 @@ class MockPingService extends _i1.Mock implements _i2.PingService {
   );
 }
 
-/// A class which mocks [TransactionLocalDatasourceImpl].
+/// A class which mocks [TransactionLocalDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTransactionLocalDatasourceImpl extends _i1.Mock
-    implements _i4.TransactionLocalDatasourceImpl {
-  MockTransactionLocalDatasourceImpl() {
+class MockTransactionLocalDatasource extends _i1.Mock
+    implements _i4.TransactionLocalDatasource {
+  MockTransactionLocalDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -217,9 +218,9 @@ class MockTransactionLocalDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i4.TransactionModel>>> getUserTransactions(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>
@@ -256,12 +257,12 @@ class MockTransactionLocalDatasourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<List<_i4.TransactionModel>>>);
 }
 
-/// A class which mocks [TransactionRemoteDatasourceImpl].
+/// A class which mocks [TransactionRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTransactionRemoteDatasourceImpl extends _i1.Mock
-    implements _i4.TransactionRemoteDatasourceImpl {
-  MockTransactionRemoteDatasourceImpl() {
+class MockTransactionRemoteDatasource extends _i1.Mock
+    implements _i4.TransactionRemoteDatasource {
+  MockTransactionRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -340,9 +341,9 @@ class MockTransactionRemoteDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i4.TransactionModel>>> getUserTransactions(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>

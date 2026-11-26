@@ -202,12 +202,12 @@ class MockQueuedActionDatasource extends _i1.Mock
           as _i3.Future<_i5.Result<void>>);
 }
 
-/// A class which mocks [UserRemoteDatasourceImpl].
+/// A class which mocks [UserRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRemoteDatasourceImpl extends _i1.Mock
-    implements _i7.UserRemoteDatasourceImpl {
-  MockUserRemoteDatasourceImpl() {
+class MockUserRemoteDatasource extends _i1.Mock
+    implements _i7.UserRemoteDatasource {
+  MockUserRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -264,12 +264,12 @@ class MockUserRemoteDatasourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<_i7.UserModel?>>);
 }
 
-/// A class which mocks [TransactionRemoteDatasourceImpl].
+/// A class which mocks [TransactionRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTransactionRemoteDatasourceImpl extends _i1.Mock
-    implements _i8.TransactionRemoteDatasourceImpl {
-  MockTransactionRemoteDatasourceImpl() {
+class MockTransactionRemoteDatasource extends _i1.Mock
+    implements _i8.TransactionRemoteDatasource {
+  MockTransactionRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -348,9 +348,9 @@ class MockTransactionRemoteDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i8.TransactionModel>>> getUserTransactions(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>
@@ -387,12 +387,12 @@ class MockTransactionRemoteDatasourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<List<_i8.TransactionModel>>>);
 }
 
-/// A class which mocks [ProductRemoteDatasourceImpl].
+/// A class which mocks [ProductRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductRemoteDatasourceImpl extends _i1.Mock
-    implements _i9.ProductRemoteDatasourceImpl {
-  MockProductRemoteDatasourceImpl() {
+class MockProductRemoteDatasource extends _i1.Mock
+    implements _i9.ProductRemoteDatasource {
+  MockProductRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -466,9 +466,9 @@ class MockProductRemoteDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i9.ProductModel>>> getUserProducts(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>

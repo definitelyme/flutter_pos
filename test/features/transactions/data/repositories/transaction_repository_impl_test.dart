@@ -12,21 +12,21 @@ import 'transaction_repository_impl_test.mocks.dart';
 // Generate mocks
 @GenerateMocks([
   PingService,
-  TransactionLocalDatasourceImpl,
-  TransactionRemoteDatasourceImpl,
+  TransactionLocalDatasource,
+  TransactionRemoteDatasource,
   QueuedActionDatasource,
 ])
 void main() {
   late TransactionRepositoryImpl repository;
   late MockPingService mockPingService;
-  late MockTransactionLocalDatasourceImpl mockLocalDatasource;
-  late MockTransactionRemoteDatasourceImpl mockRemoteDatasource;
+  late MockTransactionLocalDatasource mockLocalDatasource;
+  late MockTransactionRemoteDatasource mockRemoteDatasource;
   late MockQueuedActionDatasource mockQueuedActionDatasource;
 
   setUp(() {
     mockPingService = MockPingService();
-    mockLocalDatasource = MockTransactionLocalDatasourceImpl();
-    mockRemoteDatasource = MockTransactionRemoteDatasourceImpl();
+    mockLocalDatasource = MockTransactionLocalDatasource();
+    mockRemoteDatasource = MockTransactionRemoteDatasource();
     mockQueuedActionDatasource = MockQueuedActionDatasource();
 
     // Provide dummy values for Mockito

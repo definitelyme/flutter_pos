@@ -12,21 +12,21 @@ import 'user_repository_impl_test.mocks.dart';
 // Generate mocks
 @GenerateMocks([
   PingService,
-  UserLocalDatasourceImpl,
-  UserRemoteDatasourceImpl,
+  UserLocalDatasource,
+  UserRemoteDatasource,
   QueuedActionDatasource,
 ])
 void main() {
   late UserRepositoryImpl repository;
   late MockPingService mockPingService;
-  late MockUserLocalDatasourceImpl mockLocalDatasource;
-  late MockUserRemoteDatasourceImpl mockRemoteDatasource;
+  late MockUserLocalDatasource mockLocalDatasource;
+  late MockUserRemoteDatasource mockRemoteDatasource;
   late MockQueuedActionDatasource mockQueuedActionDatasource;
 
   setUp(() {
     mockPingService = MockPingService();
-    mockLocalDatasource = MockUserLocalDatasourceImpl();
-    mockRemoteDatasource = MockUserRemoteDatasourceImpl();
+    mockLocalDatasource = MockUserLocalDatasource();
+    mockRemoteDatasource = MockUserRemoteDatasource();
     mockQueuedActionDatasource = MockQueuedActionDatasource();
 
     // Provide dummy values for Mockito

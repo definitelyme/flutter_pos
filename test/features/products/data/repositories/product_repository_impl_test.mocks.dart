@@ -6,7 +6,8 @@
 
 import 'dart:async' as _i3;
 
-import 'package:flutter_pos/core/data/export.dart' as _i2;
+import 'package:flutter_pos/core/data/services/connectivity/ping_service.dart'
+    as _i2;
 import 'package:flutter_pos/core/domain/export.dart' as _i5;
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart' as _i7;
 import 'package:flutter_pos/features/products/data/export.dart' as _i4;
@@ -133,12 +134,12 @@ class MockPingService extends _i1.Mock implements _i2.PingService {
   );
 }
 
-/// A class which mocks [ProductLocalDatasourceImpl].
+/// A class which mocks [ProductLocalDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductLocalDatasourceImpl extends _i1.Mock
-    implements _i4.ProductLocalDatasourceImpl {
-  MockProductLocalDatasourceImpl() {
+class MockProductLocalDatasource extends _i1.Mock
+    implements _i4.ProductLocalDatasource {
+  MockProductLocalDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -212,9 +213,9 @@ class MockProductLocalDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i4.ProductModel>>> getUserProducts(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>
@@ -250,12 +251,12 @@ class MockProductLocalDatasourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<List<_i4.ProductModel>>>);
 }
 
-/// A class which mocks [ProductRemoteDatasourceImpl].
+/// A class which mocks [ProductRemoteDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductRemoteDatasourceImpl extends _i1.Mock
-    implements _i4.ProductRemoteDatasourceImpl {
-  MockProductRemoteDatasourceImpl() {
+class MockProductRemoteDatasource extends _i1.Mock
+    implements _i4.ProductRemoteDatasource {
+  MockProductRemoteDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -329,9 +330,9 @@ class MockProductRemoteDatasourceImpl extends _i1.Mock
   @override
   _i3.Future<_i5.Result<List<_i4.ProductModel>>> getUserProducts(
     String? userId, {
-    String? orderBy = 'createdAt',
-    String? sortBy = 'DESC',
-    int? limit = 10,
+    String? orderBy,
+    String? sortBy,
+    int? limit,
     int? offset,
     String? contains,
   }) =>

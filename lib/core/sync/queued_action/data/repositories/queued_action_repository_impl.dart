@@ -12,9 +12,9 @@ import 'package:flutter_pos/utils/utils.dart';
 class QueuedActionRepositoryImpl extends QueuedActionRepository {
   final PingService pingService;
   final QueuedActionDatasource queuedActionLocalDatasource;
-  final UserRemoteDatasourceImpl userRemoteDatasource;
-  final TransactionRemoteDatasourceImpl transactionRemoteDatasource;
-  final ProductRemoteDatasourceImpl productRemoteDatasource;
+  final UserRemoteDatasource userRemoteDatasource;
+  final TransactionRemoteDatasource transactionRemoteDatasource;
+  final ProductRemoteDatasource productRemoteDatasource;
 
   QueuedActionRepositoryImpl({
     required this.pingService,

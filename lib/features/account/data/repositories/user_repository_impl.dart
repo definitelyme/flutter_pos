@@ -9,8 +9,8 @@ import 'package:flutter_pos/features/account/domain/export.dart';
 
 class UserRepositoryImpl extends UserRepository {
   final PingService pingService;
-  final UserLocalDatasourceImpl userLocalDatasource;
-  final UserRemoteDatasourceImpl userRemoteDatasource;
+  final UserLocalDatasource userLocalDatasource;
+  final UserRemoteDatasource userRemoteDatasource;
   final QueuedActionDatasource queuedActionLocalDatasource;
 
   UserRepositoryImpl({
