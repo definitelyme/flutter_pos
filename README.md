@@ -3,29 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange)](./LICENSE)
 [![Made with Flutter](https://img.shields.io/badge/made%20with-Flutter-blue)](https://flutter.dev/)
 
-> 🚀 This project is the base model of [Zirel POS](https://zirelpos.com/). If you want a ready-to-use, feature-complete POS app, you might want to check it out, it's free, no card required.
-
-<p>
-  <a href="https://zirelpos.com/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/zirel_pos_banner_dark.webp">
-      <img src="docs/zirel_pos_banner_light.webp" alt="Try Zirel POS Free. The Free plan has no time limit. Upgrade in the app when you need more.">
-    </picture>
-  </a>
-</p>
-
 A Point of Sale (POS) application built with Flutter, demonstrating **Clean Architecture** principles and **offline-first** design patterns. This project serves as a learning resource and reference implementation for building Flutter apps with proper architecture and automatic data synchronization between local storage (SQLite) and cloud database (Firestore).
 
 The app prioritizes local-first operations, storing all data in SQLite and automatically syncing with Firestore when online. When offline, all user actions (create, update, delete) are recorded as `QueuedActions` in the local database and automatically executed in sequence when internet connectivity is restored.
-
-<br/>
-<p align="left">
-  <img src="docs/screenshoot_2.jpeg" alt="Image 2" height="350" style="margin-right: 10px;">
-  <img src="docs/screenshoot_1.jpeg" alt="Image 1" height="350" style="margin-right: 10px;">
-  <img src="docs/screenshoot_3.jpeg" alt="Image 2" height="350" style="margin-right: 10px;">
-  <img src="docs/screenshoot_4.jpeg" alt="Image 2" height="350" style="margin-right: 10px;">
-  <img src="docs/screenshoot_5.jpeg" alt="Image 2" height="350">
-</p>
 
 ## Demo APK
 
@@ -55,10 +35,6 @@ The app prioritizes local-first operations, storing all data in SQLite and autom
 - **Multi-Platform**: Supports Android, iOS, Windows, macOS, and Linux
 - **Error Handling**: User-friendly error messages and states
 - **Reusable Widgets**: Custom UI components for consistent design
-
-## Architecture
-
-<img src="docs/architecture.png" alt="Architecture">
 
 ## Project Structure
 
@@ -183,10 +159,6 @@ flutter_pos/
    ```
 
    - Add cloud firestore indexes to enable query
-     <br/>
-     <img src="docs/firestore_indexes.png" alt="Cloud Firestore Indexes" width=800px>
-     <br/>
-     <br/>
    - Update firebase storage rules to allow read write operation
      <br/>
 
