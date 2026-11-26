@@ -10,19 +10,22 @@ import 'storage_repository_impl_test.mocks.dart';
 // Generate mocks
 @GenerateMocks([
   PingService,
-  StorageRemoteDataSourceImpl,
+  StorageDataSource,
 ])
 void main() {
   late StorageRepositoryImpl repository;
   late MockPingService mockPingService;
-  late MockStorageRemoteDataSourceImpl mockStorageRemoteDataSource;
+  late MockStorageDataSource mockStorageRemoteDataSource;
 
   setUp(() {
     mockPingService = MockPingService();
-    mockStorageRemoteDataSource = MockStorageRemoteDataSourceImpl();
+    mockStorageRemoteDataSource = MockStorageDataSource();
 
     // Provide dummy values for Mockito
     provideDummy<Result<String>>(
+      Result.success(data: ''),
+    );
+    provideDummy<Result<String?>>(
       Result.success(data: ''),
     );
 

@@ -5,7 +5,7 @@ import 'package:flutter_pos/core/storage/domain/export.dart';
 
 class StorageRepositoryImpl implements StorageRepository {
   final PingService pingService;
-  final StorageRemoteDataSourceImpl storageRemoteDataSource;
+  final StorageDataSource storageRemoteDataSource;
 
   StorageRepositoryImpl({
     required this.pingService,

@@ -9,7 +9,8 @@ import 'dart:async' as _i3;
 import 'package:flutter_pos/core/data/services/connectivity/ping_service.dart'
     as _i2;
 import 'package:flutter_pos/core/domain/export.dart' as _i5;
-import 'package:flutter_pos/core/storage/data/export.dart' as _i4;
+import 'package:flutter_pos/core/storage/data/sources/storage_datasource.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 
@@ -133,12 +134,11 @@ class MockPingService extends _i1.Mock implements _i2.PingService {
   );
 }
 
-/// A class which mocks [StorageRemoteDataSourceImpl].
+/// A class which mocks [StorageDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockStorageRemoteDataSourceImpl extends _i1.Mock
-    implements _i4.StorageRemoteDataSourceImpl {
-  MockStorageRemoteDataSourceImpl() {
+class MockStorageDataSource extends _i1.Mock implements _i4.StorageDataSource {
+  MockStorageDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -156,15 +156,15 @@ class MockStorageRemoteDataSourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<String>>);
 
   @override
-  _i3.Future<_i5.Result<String>> uploadProductImage(String? imgPath) =>
+  _i3.Future<_i5.Result<String?>> uploadProductImage(String? imgPath) =>
       (super.noSuchMethod(
             Invocation.method(#uploadProductImage, [imgPath]),
-            returnValue: _i3.Future<_i5.Result<String>>.value(
-              _i6.dummyValue<_i5.Result<String>>(
+            returnValue: _i3.Future<_i5.Result<String?>>.value(
+              _i6.dummyValue<_i5.Result<String?>>(
                 this,
                 Invocation.method(#uploadProductImage, [imgPath]),
               ),
             ),
           )
-          as _i3.Future<_i5.Result<String>>);
+          as _i3.Future<_i5.Result<String?>>);
 }
