@@ -8,8 +8,8 @@ class ExternalLauncher {
   static void openUrl(String url) async {
     Uri uri;
 
-    if (!url.contains("http")) {
-      uri = Uri.parse("http://$url");
+    if (!url.contains('http')) {
+      uri = Uri.parse('http://$url');
     } else {
       uri = Uri.parse(url);
     }
@@ -23,8 +23,8 @@ class ExternalLauncher {
     required String phone,
     required String message,
   }) async {
-    var androidUrl = "whatsapp://send?phone=$phone&text=$message";
-    var iosUrl = "https://wa.me/$phone?text=${Uri.parse(message)}";
+    var androidUrl = 'whatsapp://send?phone=$phone&text=$message';
+    var iosUrl = 'https://wa.me/$phone?text=${Uri.parse(message)}';
 
     try {
       if (Platform.isIOS) {

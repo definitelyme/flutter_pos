@@ -3,6 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i4;
 
 import 'package:firebase_core/firebase_core.dart' as _i2;
@@ -24,15 +25,18 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
+// ignore_for_file: invalid_use_of_internal_member
 
 class _FakeFirebaseApp_0 extends _i1.SmartFake implements _i2.FirebaseApp {
-  _FakeFirebaseApp_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeFirebaseApp_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [FirebaseCrashlytics].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseCrashlytics extends _i1.Mock implements _i3.FirebaseCrashlytics {
+class MockFirebaseCrashlytics extends _i1.Mock
+    implements _i3.FirebaseCrashlytics {
   MockFirebaseCrashlytics() {
     _i1.throwOnMissingStub(this);
   }
@@ -54,8 +58,8 @@ class MockFirebaseCrashlytics extends _i1.Mock implements _i3.FirebaseCrashlytic
           as bool);
 
   @override
-  set app(_i2.FirebaseApp? _app) => super.noSuchMethod(
-    Invocation.setter(#app, _app),
+  set app(_i2.FirebaseApp? value) => super.noSuchMethod(
+    Invocation.setter(#app, value),
     returnValueForMissingStub: null,
   );
 
@@ -205,7 +209,9 @@ class MockDebugModeWrapper extends _i1.Mock implements _i6.DebugModeWrapper {
   }
 
   @override
-  bool get isDebugMode => (super.noSuchMethod(Invocation.getter(#isDebugMode), returnValue: false) as bool);
+  bool get isDebugMode =>
+      (super.noSuchMethod(Invocation.getter(#isDebugMode), returnValue: false)
+          as bool);
 
   @override
   bool get isFlutterTestMode =>

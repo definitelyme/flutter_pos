@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../providers/main/main_notifier.dart';
-import '../welcome/welcome_screen.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/presentation/providers/main/main_notifier.dart';
+import 'package:flutter_pos/presentation/screens/welcome/welcome_screen.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   final Widget child;

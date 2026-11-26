@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/common/result.dart';
-import '../../../domain/entities/ordered_product_entity.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../../domain/entities/transaction_entity.dart';
-import '../../../domain/usecases/transaction_usecases.dart';
-import '../auth/auth_notifier.dart';
-import '../products/products_notifier.dart';
-import 'home_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/ordered_product_entity.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/domain/usecases/transaction_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/products/products_notifier.dart';
+import 'package:flutter_pos/presentation/providers/home/home_state.dart';
 
 final homeNotifierProvider = NotifierProvider.autoDispose<HomeNotifier, HomeState>(
   HomeNotifier.new,
@@ -45,11 +47,11 @@ class HomeNotifier extends AutoDisposeNotifier<HomeState> {
 
       if (res.isSuccess) {
         // Auto print receipt (fire-and-forget, ignore failure)
-        ref.read(printerServiceProvider).printTransaction(transaction);
+        unawaited(ref.read(printerServiceProvider).printTransaction(transaction));
       }
 
       // Refresh products
-      ref.read(productsNotifierProvider.notifier).getAllProducts();
+      unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
 
       return res;
     } catch (e) {

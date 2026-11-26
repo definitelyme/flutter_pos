@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../app/routes/app_routes.dart';
-import '../../core/themes/app_sizes.dart';
-import 'app_button.dart';
-import 'app_progress_indicator.dart';
+import 'package:flutter_pos/app/routes/app_routes.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
 
 class AppDialog {
   static Future<dynamic> show({
@@ -117,20 +119,22 @@ class AppDialog {
     if (context == null) throw Exception('No context available for dialog');
 
     // Show the progress dialog
-    showDialog(
-      context: context,
-      barrierDismissible: kDebugMode ? true : dismissible,
-      builder: (dialogContext) {
-        return PopScope(
-          canPop: kDebugMode ? true : dismissible,
-          child: AppDialogWidget(
-            dismissible: kDebugMode ? true : dismissible,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            child: const AppProgressIndicator(),
-          ),
-        );
-      },
+    unawaited(
+      showDialog(
+        context: context,
+        barrierDismissible: kDebugMode ? true : dismissible,
+        builder: (dialogContext) {
+          return PopScope(
+            canPop: kDebugMode ? true : dismissible,
+            child: AppDialogWidget(
+              dismissible: kDebugMode ? true : dismissible,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              child: const AppProgressIndicator(),
+            ),
+          );
+        },
+      ),
     );
 
     try {

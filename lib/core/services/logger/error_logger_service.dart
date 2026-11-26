@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-import '../../utilities/console_logger.dart';
-import '../../utilities/debug_mode_wrapper.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/core/utilities/debug_mode_wrapper.dart';
 
 /// Global error logging service
 class ErrorLoggerService {
@@ -25,7 +27,7 @@ class ErrorLoggerService {
     ce(error, title: title, message: message, state: state);
 
     if (!_debugMode.isDebugMode) {
-      _crashlytics.recordError(error, stackTrace);
+      unawaited(_crashlytics.recordError(error, stackTrace));
     }
   }
 }

@@ -190,7 +190,7 @@ void main() {
       when(mockPingService.isConnected).thenReturn(false);
 
       final queues = [
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 1,
           repository: 'ProductRepositoryImpl',
           method: 'createProduct',
@@ -229,7 +229,7 @@ void main() {
           isCritical: true,
           createdAt: '2025-01-01T10:00:00Z',
         ),
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 2,
           repository: 'ProductRepositoryImpl',
           method: 'deleteProduct',
@@ -317,7 +317,7 @@ void main() {
     });
 
     test('executes deleteProduct successfully', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 3,
         repository: 'ProductRepositoryImpl',
         method: 'deleteProduct',
@@ -453,7 +453,7 @@ void main() {
     });
 
     test('executes deleteUser successfully', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 3,
         repository: 'UserRepositoryImpl',
         method: 'deleteUser',
@@ -540,7 +540,7 @@ void main() {
     });
 
     test('executes deleteTransaction successfully', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 3,
         repository: 'TransactionRepositoryImpl',
         method: 'deleteTransaction',
@@ -561,7 +561,7 @@ void main() {
 
   group('executeQueuedAction - Unknown repository/method', () {
     test('returns success for unknown repository', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 1,
         repository: 'UnknownRepository',
         method: 'someMethod',
@@ -579,7 +579,7 @@ void main() {
     });
 
     test('returns success for unknown method', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 1,
         repository: 'ProductRepositoryImpl',
         method: 'unknownMethod',
@@ -599,7 +599,7 @@ void main() {
 
   group('executeQueuedAction - Error handling', () {
     test('handles JSON decode exception', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 1,
         repository: 'ProductRepositoryImpl',
         method: 'createProduct',
@@ -615,7 +615,7 @@ void main() {
     });
 
     test('handles number parse exception for delete methods', () async {
-      final queue = QueuedActionEntity(
+      final queue = const QueuedActionEntity(
         id: 1,
         repository: 'ProductRepositoryImpl',
         method: 'deleteProduct',

@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../domain/usecases/params/base_params.dart';
-import '../../../domain/usecases/product_usecases.dart';
-import '../auth/auth_notifier.dart';
-import 'products_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/domain/usecases/params/base_params.dart';
+import 'package:flutter_pos/domain/usecases/product_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/products/products_state.dart';
 
 final productsNotifierProvider = NotifierProvider<ProductsNotifier, ProductsState>(
   ProductsNotifier.new,

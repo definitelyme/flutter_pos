@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
-import '../../../core/common/result.dart';
-import '../interfaces/storage_datasource.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/data/datasources/interfaces/storage_datasource.dart';
 
 class StorageRemoteDataSourceImpl implements StorageDataSource {
   final FirebaseStorage _firebaseStorage;

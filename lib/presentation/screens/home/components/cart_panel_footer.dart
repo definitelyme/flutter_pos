@@ -1,16 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../../../app/di/app_providers.dart';
-import '../../../../core/themes/app_sizes.dart';
-import '../../../../core/utilities/currency_formatter.dart';
-import '../../../providers/home/home_notifier.dart';
-import '../../../widgets/app_button.dart';
-import '../../../widgets/app_dialog.dart';
-import '../../../widgets/app_drop_down.dart';
-import '../../../widgets/app_text_field.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/presentation/providers/home/home_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
+import 'package:flutter_pos/presentation/widgets/app_drop_down.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
 
 class CartPanelFooter extends ConsumerWidget {
   final PanelController panelController;
@@ -79,18 +81,20 @@ class _PayButton extends ConsumerWidget {
     return AppButton(
       text: !homeState.isPanelExpanded
           ? homeState.orderedProducts.isNotEmpty
-                ? "${homeState.orderedProducts.length} Products = ${CurrencyFormatter.format(homeNotifier.getTotalAmount())}"
+                ? '${homeState.orderedProducts.length} Products = ${CurrencyFormatter.format(homeNotifier.getTotalAmount())}'
                 : 'Transaction'
           : 'Pay',
       enabled: homeState.orderedProducts.isNotEmpty,
       onTap: () {
         if (homeState.isPanelExpanded) {
-          AppDialog.show(
-            child: const _AdditionalInfoDialog(),
-            showButtons: false,
+          unawaited(
+            AppDialog.show(
+              child: const _AdditionalInfoDialog(),
+              showButtons: false,
+            ),
           );
         } else {
-          panelController.open();
+          unawaited(panelController.open());
         }
       },
     );
@@ -128,7 +132,7 @@ class _AdditionalInfoDialogState extends ConsumerState<_AdditionalInfoDialog> {
     if (res.isSuccess) {
       router.go('/transactions/transaction-detail/${res.data}');
     } else {
-      AppDialog.showError(error: res.error?.toString());
+      unawaited(AppDialog.showError(error: res.error?.toString()));
     }
   }
 
@@ -204,9 +208,11 @@ class _AdditionalInfoDialogState extends ConsumerState<_AdditionalInfoDialog> {
                   final router = ref.read(appRoutesProvider).router;
 
                   context.pop();
-                  onPay(
-                    homeNotifier: homeNotifier,
-                    router: router,
+                  unawaited(
+                    onPay(
+                      homeNotifier: homeNotifier,
+                      router: router,
+                    ),
                   );
                 },
               ),

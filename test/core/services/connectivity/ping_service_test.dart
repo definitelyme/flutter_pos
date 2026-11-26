@@ -28,7 +28,7 @@ void main() {
       );
 
       // Wait a bit for process to start
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
 
       // Process should have started
       // Note: This is hard to test without mocking Process.start
@@ -42,7 +42,7 @@ void main() {
         interval: 1,
       );
 
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
 
       pingService.stopPing();
 
@@ -182,7 +182,7 @@ void main() {
       );
 
       // Wait for pings to complete
-      await Future.delayed(Duration(seconds: 7));
+      await Future.delayed(const Duration(seconds: 7));
 
       // Should have received some responses
       expect(lines.isNotEmpty, true);
@@ -193,7 +193,7 @@ void main() {
       expect(validLatencies.isNotEmpty, true);
 
       pingService.dispose();
-    }, timeout: Timeout(Duration(seconds: 10)));
+    }, timeout: const Timeout(Duration(seconds: 10)));
 
     test('should detect connection status changes', () async {
       bool statusChanged = false;
@@ -211,13 +211,13 @@ void main() {
       );
 
       // Wait for pings
-      await Future.delayed(Duration(seconds: 7));
+      await Future.delayed(const Duration(seconds: 7));
 
       // Status should have changed at some point
       expect(statusChanged, true);
 
       pingService.dispose();
-    }, timeout: Timeout(Duration(seconds: 10)));
+    }, timeout: const Timeout(Duration(seconds: 10)));
 
     test('should handle unreachable host', () async {
       final lines = <String>[];
@@ -234,13 +234,13 @@ void main() {
         interval: 1,
       );
 
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
 
       // Should have some output (likely errors)
       expect(lines.isNotEmpty, true);
 
       pingService.dispose();
-    }, timeout: Timeout(Duration(seconds: 8)));
+    }, timeout: const Timeout(Duration(seconds: 8)));
 
     test('should stop ping mid-execution', () async {
       await pingService.startPing(
@@ -250,14 +250,14 @@ void main() {
       );
 
       // Wait a bit then stop
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       pingService.stopPing();
 
       // Process should be stopped
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
 
       pingService.dispose();
-    }, timeout: Timeout(Duration(seconds: 5)));
+    }, timeout: const Timeout(Duration(seconds: 5)));
 
     test('should respect maxLines limit', () async {
       final maxLines = 10;
@@ -276,13 +276,13 @@ void main() {
         maxLines: maxLines,
       );
 
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
 
       // Should not exceed maxLines
       expect(capturedLines.length <= maxLines + 1, true); // +1 for potential race condition
 
       pingService.dispose();
-    }, timeout: Timeout(Duration(seconds: 8)));
+    }, timeout: const Timeout(Duration(seconds: 8)));
   });
 
   group('PingData and PingResponse', () {
@@ -290,7 +290,7 @@ void main() {
       final response = PingResponse(
         ip: '8.8.8.8',
         bytes: 32,
-        time: Duration(milliseconds: 15),
+        time: const Duration(milliseconds: 15),
         ttl: 117,
       );
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../app/routes/params/error_screen_param.dart';
-import '../../../core/themes/app_sizes.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_error_widget.dart';
+import 'package:flutter_pos/app/routes/params/error_screen_param.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_error_widget.dart';
 
 class ErrorScreen extends StatelessWidget {
   final ErrorScreenParam param;

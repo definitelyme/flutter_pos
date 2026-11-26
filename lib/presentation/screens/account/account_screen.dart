@@ -1,15 +1,17 @@
+import 'dart:async';
+
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../providers/auth/auth_notifier.dart';
-import '../../providers/main/main_notifier.dart';
-import '../../providers/theme/theme_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_dialog.dart';
-import '../../widgets/app_snack_bar.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/main/main_notifier.dart';
+import 'package:flutter_pos/presentation/providers/theme/theme_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -148,10 +150,12 @@ class _ThemeButton extends StatelessWidget {
           ],
         ),
         onTap: () {
-          AppDialog.show(
-            title: 'Theme',
-            leftButtonText: 'Close',
-            child: const _ThemeDialogBody(),
+          unawaited(
+            AppDialog.show(
+              title: 'Theme',
+              leftButtonText: 'Close',
+              child: const _ThemeDialogBody(),
+            ),
           );
         },
       ),
@@ -305,32 +309,38 @@ class _SignOutButton extends ConsumerWidget {
           ],
         ),
         onTap: () {
-          AppDialog.show(
-            title: 'Confirm',
-            text: 'Are you sure want to sign out?',
-            leftButtonText: 'Cancel',
-            rightButtonText: 'Sign Out',
-            onTapRightButton: (context) async {
-              context.pop();
+          unawaited(
+            AppDialog.show(
+              title: 'Confirm',
+              text: 'Are you sure want to sign out?',
+              leftButtonText: 'Cancel',
+              rightButtonText: 'Sign Out',
+              onTapRightButton: (context) async {
+                context.pop();
 
-              final isSyncronizing = ref.read(mainNotifierProvider).isSyncronizing;
+                final isSyncronizing = ref.read(mainNotifierProvider).isSyncronizing;
 
-              if (isSyncronizing) {
-                AppSnackBar.showError('Cannot sign out while synchronizing data is in progress. Please wait a moment.');
-                return;
-              }
+                if (isSyncronizing) {
+                  unawaited(
+                    AppSnackBar.showError(
+                      'Cannot sign out while synchronizing data is in progress. Please wait a moment.',
+                    ),
+                  );
+                  return;
+                }
 
-              final res = await AppDialog.showProgress(() async {
-                return ref.read(authNotifierProvider.notifier).signOut();
-              });
+                final res = await AppDialog.showProgress(() async {
+                  return ref.read(authNotifierProvider.notifier).signOut();
+                });
 
-              if (res.isSuccess) {
-                if (!context.mounted) return;
-                context.go('/sign-in');
-              } else {
-                AppSnackBar.showError(res.error.toString());
-              }
-            },
+                if (res.isSuccess) {
+                  if (!context.mounted) return;
+                  context.go('/sign-in');
+                } else {
+                  unawaited(AppSnackBar.showError(res.error.toString()));
+                }
+              },
+            ),
           );
         },
       ),

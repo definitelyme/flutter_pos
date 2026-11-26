@@ -1,5 +1,5 @@
-import '../../core/common/result.dart';
-import '../entities/product_entity.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
 
 abstract class ProductRepository {
   Future<Result<int>> syncAllUserProducts(String userId);

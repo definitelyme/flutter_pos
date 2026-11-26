@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/themes/app_sizes.dart';
-import '../../core/utilities/console_logger.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
 
 class AppErrorWidget extends StatelessWidget {
   final Object? error;

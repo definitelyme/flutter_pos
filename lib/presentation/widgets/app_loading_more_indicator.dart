@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/themes/app_sizes.dart';
-import 'app_progress_indicator.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
 
 class AppLoadingMoreIndicator extends StatelessWidget {
   final bool isLoading;

@@ -1,8 +1,8 @@
-import '../../core/common/result.dart';
-import '../../core/usecase/usecase.dart';
-import '../entities/transaction_entity.dart';
-import '../repositories/transaction_repository.dart';
-import 'params/base_params.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/usecase/usecase.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/domain/repositories/transaction_repository.dart';
+import 'package:flutter_pos/domain/usecases/params/base_params.dart';
 
 class SyncAllUserTransactionsUsecase extends Usecase<Result, String> {
   SyncAllUserTransactionsUsecase(this._transactionRepository);

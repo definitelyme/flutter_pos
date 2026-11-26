@@ -1,16 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../providers/products/products_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_empty_state.dart';
-import '../../widgets/app_loading_more_indicator.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_text_field.dart';
-import 'components/products_card.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/presentation/providers/products/products_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/widgets/app_loading_more_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
+import 'package:flutter_pos/presentation/screens/products/components/products_card.dart';
 
 class ProductsScreen extends ConsumerStatefulWidget {
   const ProductsScreen({super.key});
@@ -27,7 +29,7 @@ class _ProductsScreenState extends ConsumerState<ProductsScreen> {
   void initState() {
     scrollController.addListener(scrollListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(productsNotifierProvider.notifier).getAllProducts();
+      unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
     });
     super.initState();
   }
@@ -187,10 +189,10 @@ class _SearchField extends ConsumerWidget {
       onEditingComplete: () {
         FocusScope.of(context).unfocus();
         ref.read(productsNotifierProvider.notifier).resetProducts();
-        ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text);
+        unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text));
       },
       onTapClearButton: () {
-        ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text);
+        unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text));
       },
     );
   }

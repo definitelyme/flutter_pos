@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/themes/app_sizes.dart';
-import '../../../../core/utilities/currency_formatter.dart';
-import '../../../../core/utilities/date_time_formatter.dart';
-import '../../../../domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/core/utilities/date_time_formatter.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
 
 class TransactionCard extends StatelessWidget {
   final TransactionEntity transaction;
@@ -18,7 +20,7 @@ class TransactionCard extends StatelessWidget {
       child: Material(
         child: InkWell(
           onTap: () async {
-            context.push('/transactions/transaction-detail/${transaction.id}');
+            unawaited(context.push('/transactions/transaction-detail/${transaction.id}'));
           },
           borderRadius: BorderRadius.circular(4),
           child: Ink(
@@ -39,7 +41,7 @@ class TransactionCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "#${transaction.id}",
+                        '#${transaction.id}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -64,7 +66,7 @@ class TransactionCard extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSizes.padding / 2),
                     Text(
-                      "${transaction.totalOrderedProduct} Products",
+                      '${transaction.totalOrderedProduct} Products',
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),

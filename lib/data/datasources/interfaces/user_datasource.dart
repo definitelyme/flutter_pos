@@ -1,5 +1,5 @@
-import '../../../core/common/result.dart';
-import '../../models/user_model.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/data/models/user_model.dart';
 
 abstract class UserDatasource {
   Future<Result<String>> createUser(UserModel user);

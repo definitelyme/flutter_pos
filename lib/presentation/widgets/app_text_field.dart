@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../core/locale/app_locale.dart';
-import '../../core/themes/app_sizes.dart';
-import 'app_icon_button.dart';
+import 'package:flutter_pos/core/locale/app_locale.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/widgets/app_icon_button.dart';
 
 enum AppTextFieldType {
   general,

@@ -1,10 +1,10 @@
 import 'package:sqflite/sqflite.dart';
 
-import '../../../core/common/result.dart';
-import '../../../core/services/database/database_config.dart';
-import '../../../core/services/database/database_service.dart';
-import '../../models/product_model.dart';
-import '../interfaces/product_datasource.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/services/database/database_config.dart';
+import 'package:flutter_pos/core/services/database/database_service.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
+import 'package:flutter_pos/data/datasources/interfaces/product_datasource.dart';
 
 class ProductLocalDatasourceImpl extends ProductDatasource {
   final DatabaseService _databaseService;

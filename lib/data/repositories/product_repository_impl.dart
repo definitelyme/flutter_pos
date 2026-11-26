@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import '../../core/common/result.dart';
-import '../../core/constants/constants.dart';
-import '../../core/services/connectivity/ping_service.dart';
-import '../../domain/entities/product_entity.dart';
-import '../../domain/repositories/product_repository.dart';
-import '../datasources/local/product_local_datasource_impl.dart';
-import '../datasources/local/queued_action_local_datasource_impl.dart';
-import '../datasources/remote/product_remote_datasource_impl.dart';
-import '../models/product_model.dart';
-import '../models/queued_action_model.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/core/services/connectivity/ping_service.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/repositories/product_repository.dart';
+import 'package:flutter_pos/data/datasources/local/product_local_datasource_impl.dart';
+import 'package:flutter_pos/data/datasources/local/queued_action_local_datasource_impl.dart';
+import 'package:flutter_pos/data/datasources/remote/product_remote_datasource_impl.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
+import 'package:flutter_pos/data/models/queued_action_model.dart';
 
 class ProductRepositoryImpl extends ProductRepository {
   final PingService pingService;

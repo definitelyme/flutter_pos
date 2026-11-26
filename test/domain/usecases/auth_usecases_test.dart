@@ -19,7 +19,7 @@ void main() {
     provideDummy<Result<UserEntity?>>(Result<UserEntity?>.success(data: null));
     provideDummy<Result<UserEntity>>(
       Result<UserEntity>.success(
-        data: UserEntity(
+        data: const UserEntity(
           id: 'user123',
           name: 'John Doe',
           email: 'john@example.com',
@@ -42,7 +42,7 @@ void main() {
 
     test('should return user from repository on successful sign in', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',
@@ -123,7 +123,7 @@ void main() {
 
     test('should return current user from repository', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',

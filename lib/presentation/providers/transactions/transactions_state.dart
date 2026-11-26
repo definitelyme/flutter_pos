@@ -1,4 +1,4 @@
-import '../../../domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
 
 class TransactionsState {
   final List<TransactionEntity>? allTransactions;

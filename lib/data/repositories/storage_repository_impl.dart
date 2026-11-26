@@ -1,7 +1,7 @@
-import '../../../../core/common/result.dart';
-import '../../core/services/connectivity/ping_service.dart';
-import '../../domain/repositories/storage_repository.dart';
-import '../datasources/remote/storage_remote_datasource_impl.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/services/connectivity/ping_service.dart';
+import 'package:flutter_pos/domain/repositories/storage_repository.dart';
+import 'package:flutter_pos/data/datasources/remote/storage_remote_datasource_impl.dart';
 
 class StorageRepositoryImpl implements StorageRepository {
   final PingService pingService;

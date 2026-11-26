@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/locale/app_locale.dart';
-import '../presentation/providers/theme/theme_notifier.dart';
-import 'di/app_providers.dart';
-import 'error/error_handler_builder.dart';
+import 'package:flutter_pos/core/locale/app_locale.dart';
+import 'package:flutter_pos/presentation/providers/theme/theme_notifier.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/app/error/error_handler_builder.dart';
 
 class App extends ConsumerWidget {
   const App({super.key});

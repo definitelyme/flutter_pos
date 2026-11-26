@@ -1,0 +1,53 @@
+global_options:
+  freezed:freezed:
+    runs_before:
+      - json_serializable:json_serializable
+  mockito:mockBuilder:
+    runs_before:
+      - injectable_generator:injectable_builder
+
+targets:
+  $default:
+    builders:
+      source_gen:combining_builder:
+        options:
+          ignore_for_file:
+            - invalid_annotation_target
+
+      freezed:freezed:
+        generate_for:
+          - lib/**/models/**.dart
+          - lib/**/entities/**.dart
+        options:
+          format: true
+          map:
+            map: false
+            map_or_null: false
+            maybe_map: false
+          when:
+            when: false
+            when_or_null: false
+            maybe_when: false
+
+      json_serializable:json_serializable:
+        generate_for:
+          - lib/**/models/**.dart
+          - lib/**/entities/**.dart
+        options:
+          explicit_to_json: true
+
+      injectable_generator:injectable_builder:
+        generate_for:
+          - lib/**/sources/**.dart
+          - lib/**/repositories/**.dart
+          - lib/**/usecases/**.dart
+          - lib/core/data/services/**.dart
+          - lib/managers/registry/**.dart
+
+      injectable_generator:injectable_config_builder:
+        generate_for:
+          - lib/managers/registry/registry.dart
+
+      mockito:mockBuilder:
+        generate_for:
+          - test/**

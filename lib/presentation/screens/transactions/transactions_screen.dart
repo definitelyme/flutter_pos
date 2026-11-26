@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../providers/transactions/transactions_notifier.dart';
-import '../../widgets/app_empty_state.dart';
-import '../../widgets/app_loading_more_indicator.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_text_field.dart';
-import 'components/transaction_card.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/transactions/transactions_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/widgets/app_loading_more_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
+import 'package:flutter_pos/presentation/screens/transactions/components/transaction_card.dart';
 
 class TransactionsScreen extends ConsumerStatefulWidget {
   const TransactionsScreen({super.key});
@@ -24,7 +26,7 @@ class _TransactionsScreenState extends ConsumerState<TransactionsScreen> {
   void initState() {
     scrollController.addListener(scrollListener);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(transactionsNotifierProvider.notifier).getAllTransactions();
+      unawaited(ref.read(transactionsNotifierProvider.notifier).getAllTransactions());
     });
     super.initState();
   }
@@ -138,10 +140,10 @@ class _SearchField extends ConsumerWidget {
       onEditingComplete: () {
         FocusScope.of(context).unfocus();
         ref.read(transactionsNotifierProvider.notifier).resetTransactions();
-        ref.read(transactionsNotifierProvider.notifier).getAllTransactions(contains: controller.text);
+        unawaited(ref.read(transactionsNotifierProvider.notifier).getAllTransactions(contains: controller.text));
       },
       onTapClearButton: () {
-        ref.read(transactionsNotifierProvider.notifier).getAllTransactions(contains: controller.text);
+        unawaited(ref.read(transactionsNotifierProvider.notifier).getAllTransactions(contains: controller.text));
       },
     );
   }

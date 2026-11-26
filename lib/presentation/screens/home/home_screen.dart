@@ -1,26 +1,28 @@
+import 'dart:async';
+
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../providers/home/home_notifier.dart';
-import '../../providers/main/main_notifier.dart';
-import '../../providers/products/products_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_dialog.dart';
-import '../../widgets/app_empty_state.dart';
-import '../../widgets/app_loading_more_indicator.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_snack_bar.dart';
-import '../../widgets/app_text_field.dart';
-import '../products/components/products_card.dart';
-import 'components/cart_panel_body.dart';
-import 'components/cart_panel_footer.dart';
-import 'components/cart_panel_header.dart';
-import 'components/order_card.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/presentation/providers/home/home_notifier.dart';
+import 'package:flutter_pos/presentation/providers/main/main_notifier.dart';
+import 'package:flutter_pos/presentation/providers/products/products_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/widgets/app_loading_more_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
+import 'package:flutter_pos/presentation/screens/products/components/products_card.dart';
+import 'package:flutter_pos/presentation/screens/home/components/cart_panel_body.dart';
+import 'package:flutter_pos/presentation/screens/home/components/cart_panel_footer.dart';
+import 'package:flutter_pos/presentation/screens/home/components/cart_panel_header.dart';
+import 'package:flutter_pos/presentation/screens/home/components/order_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -300,7 +302,7 @@ class _SyncButton extends ConsumerWidget {
           ],
         ),
         onTap: () {
-          ref.read(mainNotifierProvider.notifier).checkAndSyncAllData();
+          unawaited(ref.read(mainNotifierProvider.notifier).checkAndSyncAllData());
         },
       ),
     );
@@ -329,7 +331,9 @@ class _NetworkInfo extends ConsumerWidget {
           color: isHasInternet ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.outline,
         ),
         onTap: () {
-          AppSnackBar.show(isHasInternet ? 'Online mode' : 'No internet connection, running in offline mode');
+          unawaited(
+            AppSnackBar.show(isHasInternet ? 'Online mode' : 'No internet connection, running in offline mode'),
+          );
         },
       ),
     );
@@ -351,10 +355,10 @@ class _SearchField extends ConsumerWidget {
       onEditingComplete: () {
         FocusScope.of(context).unfocus();
         ref.read(productsNotifierProvider.notifier).resetProducts();
-        ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text);
+        unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text));
       },
       onTapClearButton: () {
-        ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text);
+        unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts(contains: controller.text));
       },
     );
   }
@@ -375,27 +379,29 @@ class _ProductCard extends ConsumerWidget {
 
         int currentQty = homeState.orderedProducts.where((e) => e.productId == product.id).firstOrNull?.quantity ?? 0;
 
-        AppDialog.show(
-          title: 'Enter Amount',
-          child: OrderCard(
-            name: product.name,
-            imageUrl: product.imageUrl,
-            stock: product.stock,
-            price: product.price,
-            initialQuantity: currentQty,
-            onChangedQuantity: (val) {
-              currentQty = val;
+        unawaited(
+          AppDialog.show(
+            title: 'Enter Amount',
+            child: OrderCard(
+              name: product.name,
+              imageUrl: product.imageUrl,
+              stock: product.stock,
+              price: product.price,
+              initialQuantity: currentQty,
+              onChangedQuantity: (val) {
+                currentQty = val;
+              },
+            ),
+            rightButtonText: 'Add To Cart',
+            leftButtonText: 'Cancel',
+            onTapLeftButton: (context) {
+              context.pop();
+            },
+            onTapRightButton: (context) {
+              ref.read(homeNotifierProvider.notifier).onAddOrderedProduct(product, currentQty == 0 ? 1 : currentQty);
+              context.pop();
             },
           ),
-          rightButtonText: 'Add To Cart',
-          leftButtonText: 'Cancel',
-          onTapLeftButton: (context) {
-            context.pop();
-          },
-          onTapRightButton: (context) {
-            ref.read(homeNotifierProvider.notifier).onAddOrderedProduct(product, currentQty == 0 ? 1 : currentQty);
-            context.pop();
-          },
         );
       },
     );

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' show Response;
 
-import '../utilities/console_logger.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
 
 /// A generic result wrapper that encapsulates success/failure states
 sealed class Result<T> {

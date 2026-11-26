@@ -38,14 +38,14 @@ void main() {
     test('should return list of queued actions from repository', () async {
       // arrange
       final queuedActions = [
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 1,
           repository: '',
           method: '',
           param: '',
           isCritical: true,
         ),
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 2,
           repository: '',
           method: '',
@@ -92,14 +92,14 @@ void main() {
     test('should execute queued actions and return results from repository', () async {
       // arrange
       final queuedActions = [
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 1,
           repository: '',
           method: '',
           param: '',
           isCritical: true,
         ),
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 2,
           repository: '',
           method: '',
@@ -123,7 +123,7 @@ void main() {
     test('should return failure from repository', () async {
       // arrange
       final queuedActions = [
-        QueuedActionEntity(
+        const QueuedActionEntity(
           id: 1,
           repository: '',
           method: '',

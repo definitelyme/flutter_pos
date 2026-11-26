@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'dart:async' as _i6;
 
 import 'package:firebase_auth/firebase_auth.dart' as _i2;
 import 'package:flutter_pos/core/common/result.dart' as _i7;
-import 'package:flutter_pos/data/datasources/remote/auth_remote_datasource_impl.dart' as _i5;
+import 'package:flutter_pos/data/datasources/remote/auth_remote_datasource_impl.dart'
+    as _i5;
 import 'package:flutter_pos/data/models/user_model.dart' as _i8;
 import 'package:flutter_pos/domain/entities/user_entity.dart' as _i4;
 import 'package:google_sign_in/google_sign_in.dart' as _i3;
@@ -27,23 +29,28 @@ import 'package:mockito/src/dummies.dart' as _i9;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
+// ignore_for_file: invalid_use_of_internal_member
 
 class _FakeFirebaseAuth_0 extends _i1.SmartFake implements _i2.FirebaseAuth {
-  _FakeFirebaseAuth_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeFirebaseAuth_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeGoogleSignIn_1 extends _i1.SmartFake implements _i3.GoogleSignIn {
-  _FakeGoogleSignIn_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeGoogleSignIn_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 class _FakeUserEntity_2 extends _i1.SmartFake implements _i4.UserEntity {
-  _FakeUserEntity_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeUserEntity_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRemoteDataSourceImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRemoteDataSourceImpl extends _i1.Mock implements _i5.AuthRemoteDataSourceImpl {
+class MockAuthRemoteDataSourceImpl extends _i1.Mock
+    implements _i5.AuthRemoteDataSourceImpl {
   MockAuthRemoteDataSourceImpl() {
     _i1.throwOnMissingStub(this);
   }
@@ -127,62 +134,62 @@ class MockUserModel extends _i1.Mock implements _i8.UserModel {
           as String);
 
   @override
-  set id(String? _id) => super.noSuchMethod(
-    Invocation.setter(#id, _id),
+  set id(String? value) => super.noSuchMethod(
+    Invocation.setter(#id, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set email(String? _email) => super.noSuchMethod(
-    Invocation.setter(#email, _email),
+  set email(String? value) => super.noSuchMethod(
+    Invocation.setter(#email, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set phone(String? _phone) => super.noSuchMethod(
-    Invocation.setter(#phone, _phone),
+  set phone(String? value) => super.noSuchMethod(
+    Invocation.setter(#phone, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set name(String? _name) => super.noSuchMethod(
-    Invocation.setter(#name, _name),
+  set name(String? value) => super.noSuchMethod(
+    Invocation.setter(#name, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set gender(String? _gender) => super.noSuchMethod(
-    Invocation.setter(#gender, _gender),
+  set gender(String? value) => super.noSuchMethod(
+    Invocation.setter(#gender, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set birthdate(String? _birthdate) => super.noSuchMethod(
-    Invocation.setter(#birthdate, _birthdate),
+  set birthdate(String? value) => super.noSuchMethod(
+    Invocation.setter(#birthdate, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set imageUrl(String? _imageUrl) => super.noSuchMethod(
-    Invocation.setter(#imageUrl, _imageUrl),
+  set imageUrl(String? value) => super.noSuchMethod(
+    Invocation.setter(#imageUrl, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set authProvider(String? _authProvider) => super.noSuchMethod(
-    Invocation.setter(#authProvider, _authProvider),
+  set authProvider(String? value) => super.noSuchMethod(
+    Invocation.setter(#authProvider, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set createdAt(String? _createdAt) => super.noSuchMethod(
-    Invocation.setter(#createdAt, _createdAt),
+  set createdAt(String? value) => super.noSuchMethod(
+    Invocation.setter(#createdAt, value),
     returnValueForMissingStub: null,
   );
 
   @override
-  set updatedAt(String? _updatedAt) => super.noSuchMethod(
-    Invocation.setter(#updatedAt, _updatedAt),
+  set updatedAt(String? value) => super.noSuchMethod(
+    Invocation.setter(#updatedAt, value),
     returnValueForMissingStub: null,
   );
 
@@ -223,7 +230,9 @@ class MockUserEntity extends _i1.Mock implements _i4.UserEntity {
           as String);
 
   @override
-  List<Object?> get props => (super.noSuchMethod(Invocation.getter(#props), returnValue: <Object?>[]) as List<Object?>);
+  List<Object?> get props =>
+      (super.noSuchMethod(Invocation.getter(#props), returnValue: <Object?>[])
+          as List<Object?>);
 
   @override
   _i4.UserEntity copyWith({

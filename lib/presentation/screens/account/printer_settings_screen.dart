@@ -1,14 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/themes/app_sizes.dart';
-import '../../providers/account/printer_settings_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_drop_down.dart';
-import '../../widgets/app_icon_button.dart';
-import '../../widgets/app_snack_bar.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/account/printer_settings_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_drop_down.dart';
+import 'package:flutter_pos/presentation/widgets/app_icon_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
 
 class PrinterSettingsScreen extends ConsumerStatefulWidget {
   const PrinterSettingsScreen({super.key});
@@ -22,7 +24,7 @@ class _PrinterSettingsScreenState extends ConsumerState<PrinterSettingsScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(printerSettingsNotifierProvider.notifier).getAndSelectPrinter();
+      unawaited(ref.read(printerSettingsNotifierProvider.notifier).getAndSelectPrinter());
     });
   }
 
@@ -43,11 +45,11 @@ class _PrinterSettingsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(AppSizes.padding),
+    return const SingleChildScrollView(
+      padding: EdgeInsets.all(AppSizes.padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           _SettingsRow(),
           SizedBox(height: AppSizes.padding * 1.5),
           _DevicesHeader(),
@@ -214,7 +216,7 @@ class _DevicesHeader extends ConsumerWidget {
               iconSize: 18,
               enabled: !isBusy,
               onTap: () {
-                ref.read(printerSettingsNotifierProvider.notifier).getAndSelectPrinter();
+                unawaited(ref.read(printerSettingsNotifierProvider.notifier).getAndSelectPrinter());
               },
             ),
             const SizedBox(width: 4),
@@ -223,7 +225,7 @@ class _DevicesHeader extends ConsumerWidget {
               iconSize: 18,
               enabled: hasSelectedPrinter && !isBusy,
               onTap: () {
-                ref.read(printerSettingsNotifierProvider.notifier).disconnectPrinter();
+                unawaited(ref.read(printerSettingsNotifierProvider.notifier).disconnectPrinter());
               },
             ),
             const SizedBox(width: 4),
@@ -235,7 +237,7 @@ class _DevicesHeader extends ConsumerWidget {
                 final result = await ref.read(printerServiceProvider).testPrint();
 
                 if (result.isFailure) {
-                  AppSnackBar.showError(result.error.toString());
+                  unawaited(AppSnackBar.showError(result.error.toString()));
                 }
               },
             ),

@@ -378,7 +378,7 @@ void main() {
   });
 
   group('createTransaction', () {
-    final transaction = TransactionEntity(
+    final transaction = const TransactionEntity(
       id: null,
       paymentMethod: 'cash',
       createdById: 'user123',
@@ -454,7 +454,7 @@ void main() {
   });
 
   group('updateTransaction', () {
-    final transaction = TransactionEntity(
+    final transaction = const TransactionEntity(
       id: 1,
       paymentMethod: 'credit_card',
       createdById: 'user123',
@@ -916,7 +916,7 @@ void main() {
 
   group('Integration scenarios', () {
     test('full workflow: create, sync, update, delete', () async {
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: null,
         paymentMethod: 'cash',
         createdById: 'user123',
@@ -958,7 +958,7 @@ void main() {
     });
 
     test('offline workflow with queued actions', () async {
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: null,
         paymentMethod: 'cash',
         createdById: 'user123',

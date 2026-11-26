@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../domain/usecases/params/base_params.dart';
-import '../../../domain/usecases/transaction_usecases.dart';
-import '../auth/auth_notifier.dart';
-import 'transactions_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/domain/usecases/params/base_params.dart';
+import 'package:flutter_pos/domain/usecases/transaction_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/transactions/transactions_state.dart';
 
 final transactionsNotifierProvider = NotifierProvider<TransactionsNotifier, TransactionsState>(
   TransactionsNotifier.new,

@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../../../core/themes/app_sizes.dart';
-import '../../../providers/home/home_notifier.dart';
-import '../../../widgets/app_button.dart';
-import '../../../widgets/app_dialog.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/home/home_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
 
 class CartPanelHeader extends ConsumerWidget {
   final PanelController panelController;
@@ -68,16 +70,18 @@ class CartPanelHeader extends ConsumerWidget {
                 buttonColor: Theme.of(context).colorScheme.errorContainer.withValues(alpha: 0.32),
                 enabled: homeState.orderedProducts.isNotEmpty,
                 onTap: () {
-                  AppDialog.show(
-                    title: 'Confirm',
-                    text: 'Are you sure want to remove all product?',
-                    rightButtonText: 'Remove',
-                    leftButtonText: 'Cancel',
-                    onTapRightButton: (context) {
-                      ref.read(homeNotifierProvider.notifier).onRemoveAllOrderedProduct();
-                      panelController.close();
-                      context.pop();
-                    },
+                  unawaited(
+                    AppDialog.show(
+                      title: 'Confirm',
+                      text: 'Are you sure want to remove all product?',
+                      rightButtonText: 'Remove',
+                      leftButtonText: 'Cancel',
+                      onTapRightButton: (context) {
+                        ref.read(homeNotifierProvider.notifier).onRemoveAllOrderedProduct();
+                        unawaited(panelController.close());
+                        context.pop();
+                      },
+                    ),
                   );
                 },
                 child: Row(

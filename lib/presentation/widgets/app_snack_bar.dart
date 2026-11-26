@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app/routes/app_routes.dart';
+import 'package:flutter_pos/app/routes/app_routes.dart';
 
 class AppSnackBar {
   static Future<dynamic> show(String message) async {

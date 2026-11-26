@@ -1,4 +1,4 @@
-import '../../domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
 
 class ProductModel {
   int id;

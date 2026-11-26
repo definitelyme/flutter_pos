@@ -1,18 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/extensions/string_casing_extension.dart';
-import '../../../core/themes/app_colors.dart';
-import '../../../core/themes/app_sizes.dart';
-import '../../../core/utilities/currency_formatter.dart';
-import '../../../core/utilities/date_time_formatter.dart';
-import '../../../domain/entities/ordered_product_entity.dart';
-import '../../../domain/entities/transaction_entity.dart';
-import '../../providers/transactions/transaction_detail_notifier.dart';
-import '../../widgets/app_empty_state.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_snack_bar.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/extensions/string_casing_extension.dart';
+import 'package:flutter_pos/core/themes/app_colors.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/core/utilities/date_time_formatter.dart';
+import 'package:flutter_pos/domain/entities/ordered_product_entity.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/presentation/providers/transactions/transaction_detail_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
 
 class TransactionDetailScreen extends ConsumerWidget {
   final int id;
@@ -26,7 +28,7 @@ class TransactionDetailScreen extends ConsumerWidget {
     final result = await ref.read(printerServiceProvider).printTransaction(transaction);
 
     if (result.isFailure) {
-      AppSnackBar.showError(result.error.toString());
+      unawaited(AppSnackBar.showError(result.error.toString()));
     }
   }
 

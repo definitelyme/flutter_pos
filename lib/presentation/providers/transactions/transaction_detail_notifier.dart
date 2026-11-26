@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../domain/entities/transaction_entity.dart';
-import '../../../domain/usecases/transaction_usecases.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/domain/usecases/transaction_usecases.dart';
 
 final transactionDetailNotifierProvider = NotifierProvider.autoDispose<TransactionDetailNotifier, TransactionEntity?>(
   TransactionDetailNotifier.new,

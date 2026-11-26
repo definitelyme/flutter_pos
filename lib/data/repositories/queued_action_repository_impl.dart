@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-import '../../core/common/result.dart';
-import '../../core/services/connectivity/ping_service.dart';
-import '../../core/utilities/console_logger.dart';
-import '../../domain/entities/queued_action_entity.dart';
-import '../../domain/repositories/queued_action_repository.dart';
-import '../datasources/local/queued_action_local_datasource_impl.dart';
-import '../datasources/remote/product_remote_datasource_impl.dart';
-import '../datasources/remote/transaction_remote_datasource_impl.dart';
-import '../datasources/remote/user_remote_datasource_impl.dart';
-import '../models/product_model.dart';
-import '../models/queued_action_model.dart';
-import '../models/transaction_model.dart';
-import '../models/user_model.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/services/connectivity/ping_service.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/domain/entities/queued_action_entity.dart';
+import 'package:flutter_pos/domain/repositories/queued_action_repository.dart';
+import 'package:flutter_pos/data/datasources/local/queued_action_local_datasource_impl.dart';
+import 'package:flutter_pos/data/datasources/remote/product_remote_datasource_impl.dart';
+import 'package:flutter_pos/data/datasources/remote/transaction_remote_datasource_impl.dart';
+import 'package:flutter_pos/data/datasources/remote/user_remote_datasource_impl.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
+import 'package:flutter_pos/data/models/queued_action_model.dart';
+import 'package:flutter_pos/data/models/transaction_model.dart';
+import 'package:flutter_pos/data/models/user_model.dart';
 
 class QueuedActionRepositoryImpl extends QueuedActionRepository {
   final PingService pingService;

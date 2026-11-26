@@ -175,7 +175,7 @@ void main() {
   });
 
   group('createUser', () {
-    final user = UserEntity(
+    final user = const UserEntity(
       id: 'user123',
       name: 'New User',
       email: 'new@example.com',
@@ -268,7 +268,7 @@ void main() {
   });
 
   group('updateUser', () {
-    final user = UserEntity(
+    final user = const UserEntity(
       id: 'user123',
       name: 'Updated User',
       email: 'updated@example.com',
@@ -623,7 +623,7 @@ void main() {
 
   group('Integration scenarios', () {
     test('full workflow: create, get, update, delete', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'Test User',
         email: 'test@example.com',
@@ -679,7 +679,7 @@ void main() {
     });
 
     test('offline workflow with queued actions', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'Offline User',
         email: 'offline@example.com',
@@ -716,7 +716,7 @@ void main() {
     });
 
     test('transition from offline to online', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'Transition User',
         email: 'transition@example.com',
@@ -755,7 +755,7 @@ void main() {
 
   group('Edge cases', () {
     test('handles user with null optional fields', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user999',
         name: 'Minimal User',
         email: 'minimal@example.com',
@@ -819,7 +819,7 @@ void main() {
     });
 
     test('handles special characters in user data', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user_special',
         name: "O'Brien",
         email: 'test+user@example.com',
@@ -837,7 +837,7 @@ void main() {
     });
 
     test('verifies queued action has correct structure', () async {
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'queue_user',
         name: 'Queue Test',
         email: 'queue@example.com',
@@ -888,7 +888,7 @@ void main() {
 
     test('maintains data consistency across operations', () async {
       const userId = 'consistent123';
-      final initialUser = UserEntity(
+      final initialUser = const UserEntity(
         id: userId,
         name: 'Initial',
         email: 'initial@example.com',

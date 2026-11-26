@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/common/result.dart';
-import '../../../domain/entities/user_entity.dart' hide AuthProvider;
-import '../../../domain/usecases/storage_usecases.dart';
-import '../../../domain/usecases/user_usecases.dart';
-import '../auth/auth_notifier.dart';
-import 'account_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart' hide AuthProvider;
+import 'package:flutter_pos/domain/usecases/storage_usecases.dart';
+import 'package:flutter_pos/domain/usecases/user_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/account/account_state.dart';
 
 final accountNotifierProvider = NotifierProvider.autoDispose<AccountNotifier, AccountFormState>(
   AccountNotifier.new,

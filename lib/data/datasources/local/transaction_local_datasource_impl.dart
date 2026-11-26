@@ -1,13 +1,13 @@
 import 'package:sqflite/sqflite.dart';
 
-import '../../../core/common/result.dart';
-import '../../../core/services/database/database_config.dart';
-import '../../../core/services/database/database_service.dart';
-import '../../models/ordered_product_model.dart';
-import '../../models/product_model.dart';
-import '../../models/transaction_model.dart';
-import '../../models/user_model.dart';
-import '../interfaces/transaction_datasource.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/services/database/database_config.dart';
+import 'package:flutter_pos/core/services/database/database_service.dart';
+import 'package:flutter_pos/data/models/ordered_product_model.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
+import 'package:flutter_pos/data/models/transaction_model.dart';
+import 'package:flutter_pos/data/models/user_model.dart';
+import 'package:flutter_pos/data/datasources/interfaces/transaction_datasource.dart';
 
 class TransactionLocalDatasourceImpl extends TransactionDatasource {
   final DatabaseService _databaseService;

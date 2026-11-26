@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../core/common/result.dart';
-import '../../models/product_model.dart';
-import '../interfaces/product_datasource.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
+import 'package:flutter_pos/data/datasources/interfaces/product_datasource.dart';
 
 class ProductRemoteDatasourceImpl extends ProductDatasource {
   final FirebaseFirestore _firebaseFirestore;
@@ -12,7 +12,7 @@ class ProductRemoteDatasourceImpl extends ProductDatasource {
   @override
   Future<Result<int>> createProduct(ProductModel product) async {
     try {
-      await _firebaseFirestore.collection('Product').doc("${product.id}").set(product.toJson());
+      await _firebaseFirestore.collection('Product').doc('${product.id}').set(product.toJson());
       // The id has been generated in models
       return Result.success(data: product.id);
     } catch (e) {
@@ -25,7 +25,7 @@ class ProductRemoteDatasourceImpl extends ProductDatasource {
     try {
       await _firebaseFirestore
           .collection('Product')
-          .doc("${product.id}")
+          .doc('${product.id}')
           .set(product.toJson(), SetOptions(merge: true));
 
       return Result.success(data: null);
@@ -37,7 +37,7 @@ class ProductRemoteDatasourceImpl extends ProductDatasource {
   @override
   Future<Result<void>> deleteProduct(int id) async {
     try {
-      await _firebaseFirestore.collection('Product').doc("$id").delete();
+      await _firebaseFirestore.collection('Product').doc('$id').delete();
       return Result.success(data: null);
     } catch (e) {
       return Result.failure(error: e);
@@ -47,7 +47,7 @@ class ProductRemoteDatasourceImpl extends ProductDatasource {
   @override
   Future<Result<ProductModel?>> getProduct(int id) async {
     try {
-      var res = await _firebaseFirestore.collection('Product').doc("$id").get();
+      var res = await _firebaseFirestore.collection('Product').doc('$id').get();
       if (res.data() == null) return Result.success(data: null);
       return Result.success(data: ProductModel.fromJson(res.data()!));
     } catch (e) {

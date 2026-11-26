@@ -4,12 +4,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
-import '../../../domain/entities/transaction_entity.dart';
-import '../../common/result.dart';
-import '../../constants/constants.dart';
-import '../../utilities/console_logger.dart';
-import '../../utilities/currency_formatter.dart';
-import '../../utilities/date_time_formatter.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/core/utilities/date_time_formatter.dart';
 
 class PrinterService {
   final PrinterManager _manager = PrinterManager();
@@ -39,7 +39,7 @@ class PrinterService {
       PaperSize.mm72 => 'mm72',
       PaperSize.mm80 => 'mm80',
     };
-    _sharedPreferences.setString(Constants.selectedPaperSizeKey, key);
+    unawaited(_sharedPreferences.setString(Constants.selectedPaperSizeKey, key));
   }
 
   Future<Result<void>> scanPrinters({
@@ -198,7 +198,7 @@ class PrinterService {
       ticket.text(
         'https://github.com/elrizwiraswara/flutter_pos',
         align: PrintAlign.center,
-        style: PrintTextStyle(
+        style: const PrintTextStyle(
           fontType: FontType.fontB,
         ),
       );

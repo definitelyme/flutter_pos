@@ -2,13 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/services/logger/error_logger_service.dart';
-import '../../core/utilities/console_logger.dart';
-import '../../presentation/widgets/app_error_widget.dart';
-import '../di/app_providers.dart';
-import '../routes/app_routes.dart';
-import '../routes/params/error_screen_param.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/core/services/logger/error_logger_service.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/presentation/widgets/app_error_widget.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/app/routes/app_routes.dart';
+import 'package:flutter_pos/app/routes/params/error_screen_param.dart';
 
 class ErrorHandlerBuilder extends ConsumerStatefulWidget {
   final Widget? child;

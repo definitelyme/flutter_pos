@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../../domain/usecases/product_usecases.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/usecases/product_usecases.dart';
 
 final productDetailNotifierProvider = NotifierProvider.autoDispose<ProductDetailNotifier, ProductEntity?>(
   ProductDetailNotifier.new,

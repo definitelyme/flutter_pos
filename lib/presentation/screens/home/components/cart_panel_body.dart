@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../../../../core/themes/app_sizes.dart';
-import '../../../../core/utilities/currency_formatter.dart';
-import '../../../providers/home/home_notifier.dart';
-import '../../../widgets/app_empty_state.dart';
-import 'order_card.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/presentation/providers/home/home_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/screens/home/components/order_card.dart';
 
 class CartPanelBody extends StatelessWidget {
   final PanelController panelController;
@@ -69,7 +71,7 @@ class _OrderList extends ConsumerWidget {
                 onTapRemove: () {
                   final isLast = homeState.orderedProducts.length == 1;
                   ref.read(homeNotifierProvider.notifier).onRemoveOrderedProduct(homeState.orderedProducts[i]);
-                  if (isLast) panelController.close();
+                  if (isLast) unawaited(panelController.close());
                 },
               ),
             );

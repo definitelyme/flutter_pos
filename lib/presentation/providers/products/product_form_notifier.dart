@@ -1,16 +1,17 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/common/result.dart';
-import '../../../core/utilities/console_logger.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../../domain/usecases/product_usecases.dart';
-import '../../../domain/usecases/storage_usecases.dart';
-import '../auth/auth_notifier.dart';
-import 'product_form_state.dart';
-import 'products_notifier.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/usecases/product_usecases.dart';
+import 'package:flutter_pos/domain/usecases/storage_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/products/product_form_state.dart';
+import 'package:flutter_pos/presentation/providers/products/products_notifier.dart';
 
 final productFormNotifierProvider = NotifierProvider.autoDispose<ProductFormNotifier, ProductFormState>(
   ProductFormNotifier.new,
@@ -80,7 +81,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
       var res = await CreateProductUsecase(productRepository).call(product);
 
       // Refresh products
-      ref.read(productsNotifierProvider.notifier).getAllProducts();
+      unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
 
       return res;
     } catch (e) {
@@ -116,7 +117,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
       var res = await UpdateProductUsecase(productRepository).call(product);
 
       // Refresh products
-      ref.read(productsNotifierProvider.notifier).getAllProducts();
+      unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
 
       return res;
     } catch (e) {
@@ -130,7 +131,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
       var res = await DeleteProductUsecase(productRepository).call(id);
 
       // Refresh products
-      ref.read(productsNotifierProvider.notifier).getAllProducts();
+      unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
 
       return res;
     } catch (e) {

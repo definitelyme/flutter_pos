@@ -75,7 +75,7 @@ void main() {
 
     test('should get user products with all parameters', () async {
       // arrange
-      final params = BaseParams(
+      final params = const BaseParams(
         param: 'user123',
         orderBy: 'name',
         sortBy: 'asc',
@@ -84,8 +84,8 @@ void main() {
         contains: 'search',
       );
       final products = [
-        ProductEntity(id: 1, name: 'Product 1', createdById: '', imageUrl: '', stock: 1, price: 100),
-        ProductEntity(id: 2, name: 'Product 2', createdById: '', imageUrl: '', stock: 1, price: 100),
+        const ProductEntity(id: 1, name: 'Product 1', createdById: '', imageUrl: '', stock: 1, price: 100),
+        const ProductEntity(id: 2, name: 'Product 2', createdById: '', imageUrl: '', stock: 1, price: 100),
       ];
       final result = Result<List<ProductEntity>>.success(data: products);
 
@@ -120,7 +120,7 @@ void main() {
 
     test('should return empty list when no products found', () async {
       // arrange
-      final params = BaseParams(param: 'user123');
+      final params = const BaseParams(param: 'user123');
       final result = Result<List<ProductEntity>>.success(data: []);
 
       when(
@@ -162,7 +162,7 @@ void main() {
     test('should get product by id successfully', () async {
       // arrange
       const productId = 1;
-      final product = ProductEntity(
+      final product = const ProductEntity(
         id: productId,
         name: 'Product 1',
         createdById: '',
@@ -209,7 +209,7 @@ void main() {
 
     test('should create product successfully', () async {
       // arrange
-      final product = ProductEntity(name: 'New Product', createdById: '', imageUrl: '', stock: 1, price: 100);
+      final product = const ProductEntity(name: 'New Product', createdById: '', imageUrl: '', stock: 1, price: 100);
       const createdId = 1;
       final result = Result<int>.success(data: createdId);
 
@@ -227,7 +227,7 @@ void main() {
 
     test('should return failure when creation fails', () async {
       // arrange
-      final product = ProductEntity(name: 'New Product', createdById: '', imageUrl: '', stock: 1, price: 100);
+      final product = const ProductEntity(name: 'New Product', createdById: '', imageUrl: '', stock: 1, price: 100);
       final result = Result<int>.failure(error: 'Creation failed');
 
       when(mockProductRepository.createProduct(product)).thenAnswer((_) async => result);
@@ -250,7 +250,7 @@ void main() {
 
     test('should update product successfully', () async {
       // arrange
-      final product = ProductEntity(
+      final product = const ProductEntity(
         id: 1,
         name: 'Updated Product',
         createdById: '',
@@ -275,7 +275,7 @@ void main() {
 
     test('should return failure when update fails', () async {
       // arrange
-      final product = ProductEntity(
+      final product = const ProductEntity(
         id: 1,
         name: 'Updated Product',
         createdById: '',

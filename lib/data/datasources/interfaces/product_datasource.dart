@@ -1,5 +1,5 @@
-import '../../../core/common/result.dart';
-import '../../models/product_model.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/data/models/product_model.dart';
 
 abstract class ProductDatasource {
   Future<Result<int>> createProduct(ProductModel product);

@@ -25,7 +25,7 @@ void main() {
     datasource = TransactionLocalDatasourceImpl(appDatabase);
   });
 
-  const userId = "user123";
+  const userId = 'user123';
 
   TransactionModel createSampleTransaction({
     int id = 1,

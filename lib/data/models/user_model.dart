@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
-import '../../domain/entities/user_entity.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart';
 
 class UserModel {
   String id;

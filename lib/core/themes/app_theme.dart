@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'app_colors.dart';
-import 'app_sizes.dart';
+import 'package:flutter_pos/core/themes/app_colors.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
 
 class AppTheme {
   // Make [AppTheme] to be singleton

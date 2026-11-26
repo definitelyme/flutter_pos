@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../core/common/result.dart';
-import '../../../core/constants/constants.dart';
-import '../../../core/utilities/platform_wrapper.dart';
-import '../../../firebase_options.dart';
-import '../../models/user_model.dart';
-import '../interfaces/auth_datasource.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/core/utilities/platform_wrapper.dart';
+import 'package:flutter_pos/firebase_options.dart';
+import 'package:flutter_pos/data/models/user_model.dart';
+import 'package:flutter_pos/data/datasources/interfaces/auth_datasource.dart';
 
 class AuthRemoteDataSourceImpl implements AuthDataSource {
   final firebase_auth.FirebaseAuth firebaseAuth;

@@ -1,8 +1,8 @@
-import '../../core/common/result.dart';
-import '../../core/usecase/usecase.dart';
-import '../entities/product_entity.dart';
-import '../repositories/product_repository.dart';
-import 'params/base_params.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/usecase/usecase.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
+import 'package:flutter_pos/domain/repositories/product_repository.dart';
+import 'package:flutter_pos/domain/usecases/params/base_params.dart';
 
 class SyncAllUserProductsUsecase extends Usecase<Result, String> {
   SyncAllUserProductsUsecase(this._productRepository);

@@ -34,7 +34,7 @@ void main() {
     test('should get user by id successfully', () async {
       // arrange
       const userId = 'user123';
-      final user = UserEntity(
+      final user = const UserEntity(
         id: userId,
         name: 'John Doe',
         email: 'john@example.com',
@@ -95,7 +95,7 @@ void main() {
 
     test('should create new user when user does not exist', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',
@@ -119,12 +119,12 @@ void main() {
 
     test('should return existing user id when user already exists', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',
       );
-      final existingUser = UserEntity(
+      final existingUser = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',
@@ -146,7 +146,7 @@ void main() {
 
     test('should return failure when createUser fails', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe',
         email: 'john@example.com',
@@ -168,7 +168,7 @@ void main() {
 
     test('should handle validation error during creation', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: '',
         email: 'invalid-email',
@@ -198,7 +198,7 @@ void main() {
 
     test('should update user successfully', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe Updated',
         email: 'john.new@example.com',
@@ -219,7 +219,7 @@ void main() {
 
     test('should return failure when update fails', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: 'John Doe Updated',
         email: 'john.new@example.com',
@@ -238,7 +238,7 @@ void main() {
 
     test('should handle user not found during update', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'nonexistent',
         name: 'John Doe',
         email: 'john@example.com',
@@ -257,7 +257,7 @@ void main() {
 
     test('should handle validation error during update', () async {
       // arrange
-      final user = UserEntity(
+      final user = const UserEntity(
         id: 'user123',
         name: '',
         email: 'invalid-email',

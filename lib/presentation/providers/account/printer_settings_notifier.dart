@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/constants/constants.dart';
-import '../../widgets/app_snack_bar.dart';
-import 'printer_settings_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
+import 'package:flutter_pos/presentation/providers/account/printer_settings_state.dart';
 
 final printerSettingsNotifierProvider = NotifierProvider.autoDispose<PrinterSettingsNotifier, PrinterSettingsState>(
   PrinterSettingsNotifier.new,
@@ -72,7 +74,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     state = state.copyWith(isScanning: false);
 
     if (result.isFailure) {
-      AppSnackBar.showError(result.error.toString());
+      unawaited(AppSnackBar.showError(result.error.toString()));
     }
   }
 
@@ -95,12 +97,12 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     state = state.copyWith(connectingDeviceId: null);
 
     if (result.isFailure) {
-      AppSnackBar.showError(result.error.toString());
+      unawaited(AppSnackBar.showError(result.error.toString()));
       return;
     }
 
-    sharedPreferences.setString(Constants.selectedDeviceIdKey, deviceId);
-    sharedPreferences.setString(Constants.selectedConnectionTypeKey, printer.connectionType.name);
+    unawaited(sharedPreferences.setString(Constants.selectedDeviceIdKey, deviceId));
+    unawaited(sharedPreferences.setString(Constants.selectedConnectionTypeKey, printer.connectionType.name));
   }
 
   Future<void> disconnectPrinter() async {
@@ -115,13 +117,13 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     state = state.copyWith(isDisconnecting: false);
 
     if (result.isFailure) {
-      AppSnackBar.showError(result.error.toString());
+      unawaited(AppSnackBar.showError(result.error.toString()));
       return;
     }
 
     await sharedPreferences.remove(Constants.selectedDeviceIdKey);
     await sharedPreferences.remove(Constants.selectedConnectionTypeKey);
-    AppSnackBar.show('Printer disconnected');
+    unawaited(AppSnackBar.show('Printer disconnected'));
   }
 
   bool isConnectingPrinter(PrinterDevice device) {

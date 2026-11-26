@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../app/di/app_providers.dart';
-import '../../../../core/assets/assets.dart';
-import '../../../../core/themes/app_sizes.dart';
-import '../../../providers/auth/auth_notifier.dart';
-import '../../../widgets/app_button.dart';
-import '../../../widgets/app_dialog.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/assets/assets.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -78,7 +80,7 @@ class _SignInButton extends ConsumerWidget {
         if (res.isSuccess) {
           ref.read(appRoutesProvider).router.refresh();
         } else {
-          AppDialog.showError(error: res.error?.toString());
+          unawaited(AppDialog.showError(error: res.error?.toString()));
         }
       },
     );

@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../presentation/providers/auth/auth_notifier.dart';
-import '../../presentation/screens/account/about_screen.dart';
-import '../../presentation/screens/account/account_screen.dart';
-import '../../presentation/screens/account/printer_settings_screen.dart';
-import '../../presentation/screens/account/profile_form_screen.dart';
-import '../../presentation/screens/auth/sign_in/sign_in_screen.dart';
-import '../../presentation/screens/error/error_screen.dart';
-import '../../presentation/screens/home/home_screen.dart';
-import '../../presentation/screens/main/main_screen.dart';
-import '../../presentation/screens/products/product_detail_screen.dart';
-import '../../presentation/screens/products/product_form_screen.dart';
-import '../../presentation/screens/products/products_screen.dart';
-import '../../presentation/screens/transactions/transaction_detail_screen.dart';
-import '../../presentation/screens/transactions/transactions_screen.dart';
-import '../../presentation/screens/welcome/welcome_screen.dart';
-import 'params/error_screen_param.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/screens/account/about_screen.dart';
+import 'package:flutter_pos/presentation/screens/account/account_screen.dart';
+import 'package:flutter_pos/presentation/screens/account/printer_settings_screen.dart';
+import 'package:flutter_pos/presentation/screens/account/profile_form_screen.dart';
+import 'package:flutter_pos/presentation/screens/auth/sign_in/sign_in_screen.dart';
+import 'package:flutter_pos/presentation/screens/error/error_screen.dart';
+import 'package:flutter_pos/presentation/screens/home/home_screen.dart';
+import 'package:flutter_pos/presentation/screens/main/main_screen.dart';
+import 'package:flutter_pos/presentation/screens/products/product_detail_screen.dart';
+import 'package:flutter_pos/presentation/screens/products/product_form_screen.dart';
+import 'package:flutter_pos/presentation/screens/products/products_screen.dart';
+import 'package:flutter_pos/presentation/screens/transactions/transaction_detail_screen.dart';
+import 'package:flutter_pos/presentation/screens/transactions/transactions_screen.dart';
+import 'package:flutter_pos/presentation/screens/welcome/welcome_screen.dart';
+import 'package:flutter_pos/app/routes/params/error_screen_param.dart';
 
 /// App routes
 class AppRoutes {
@@ -196,7 +196,7 @@ class AppRoutes {
     return GoRoute(
       path: 'product-edit/:id',
       builder: (context, state) {
-        int? id = int.tryParse(state.pathParameters["id"] ?? '');
+        int? id = int.tryParse(state.pathParameters['id'] ?? '');
 
         if (id == null) {
           throw 'Required productId is not provided!';
@@ -211,7 +211,7 @@ class AppRoutes {
     return GoRoute(
       path: 'product-detail/:id',
       builder: (context, state) {
-        int? id = int.tryParse(state.pathParameters["id"] ?? '');
+        int? id = int.tryParse(state.pathParameters['id'] ?? '');
 
         if (id == null) {
           throw 'Required productId is not provided!';
@@ -226,7 +226,7 @@ class AppRoutes {
     return GoRoute(
       path: 'transaction-detail/:id',
       builder: (context, state) {
-        int? id = int.tryParse(state.pathParameters["id"] ?? '');
+        int? id = int.tryParse(state.pathParameters['id'] ?? '');
 
         if (id == null) {
           throw 'Required productId is not provided!';

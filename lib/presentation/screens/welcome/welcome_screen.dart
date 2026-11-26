@@ -1,8 +1,8 @@
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/assets/assets.dart';
-import '../../../core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/assets/assets.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

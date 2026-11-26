@@ -1,15 +1,17 @@
+import 'dart:async';
+
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../../core/utilities/currency_formatter.dart';
-import '../../../core/utilities/date_time_formatter.dart';
-import '../../providers/products/product_detail_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_empty_state.dart';
-import '../../widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/core/utilities/date_time_formatter.dart';
+import 'package:flutter_pos/presentation/providers/products/product_detail_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_empty_state.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
 
 class ProductDetailScreen extends ConsumerWidget {
   final int id;
@@ -108,7 +110,7 @@ class _EditButton extends StatelessWidget {
           ],
         ),
         onTap: () {
-          context.push('/products/product-edit/$id');
+          unawaited(context.push('/products/product-edit/$id'));
         },
       ),
     );
@@ -201,7 +203,7 @@ class _ProductPrice extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Price",
+            'Price',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(
@@ -229,11 +231,11 @@ class _ProductStock extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Stock",
+            'Stock',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(
-            "$stock",
+            '$stock',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -257,11 +259,11 @@ class _ProductSold extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Sold",
+            'Sold',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(
-            "$sold",
+            '$sold',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -285,7 +287,7 @@ class _ProductDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Description",
+            'Description',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Text(

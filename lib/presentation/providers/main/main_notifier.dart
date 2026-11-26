@@ -1,17 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../domain/entities/queued_action_entity.dart';
-import '../../../domain/entities/user_entity.dart' hide AuthProvider;
-import '../../../domain/usecases/params/no_param.dart';
-import '../../../domain/usecases/product_usecases.dart';
-import '../../../domain/usecases/queued_action_usecases.dart';
-import '../../../domain/usecases/transaction_usecases.dart';
-import '../../../domain/usecases/user_usecases.dart';
-import '../../widgets/app_snack_bar.dart';
-import '../auth/auth_notifier.dart';
-import '../products/products_notifier.dart';
-import 'main_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/domain/entities/queued_action_entity.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart' hide AuthProvider;
+import 'package:flutter_pos/domain/usecases/params/no_param.dart';
+import 'package:flutter_pos/domain/usecases/product_usecases.dart';
+import 'package:flutter_pos/domain/usecases/queued_action_usecases.dart';
+import 'package:flutter_pos/domain/usecases/transaction_usecases.dart';
+import 'package:flutter_pos/domain/usecases/user_usecases.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_notifier.dart';
+import 'package:flutter_pos/presentation/providers/products/products_notifier.dart';
+import 'package:flutter_pos/presentation/providers/main/main_state.dart';
 
 final mainNotifierProvider = NotifierProvider<MainNotifier, MainState>(
   MainNotifier.new,
@@ -41,7 +43,7 @@ class MainNotifier extends Notifier<MainState> {
     // Note: The ICMP protocol may not work on virtual devices
     final isPhysicalDevice = await deviceInfoService.checkDeviceType();
 
-    pingService.startPing(host: isPhysicalDevice ? '8.8.8.8' : '127.0.0.1');
+    unawaited(pingService.startPing(host: isPhysicalDevice ? '8.8.8.8' : '127.0.0.1'));
     pingService.addConnectionStatusListener(
       (isConnected) => onHasInternet(isConnected),
     );
@@ -63,16 +65,16 @@ class MainNotifier extends Notifier<MainState> {
       await getAndSyncAllUserData();
 
       if (queueExecutedCount > 0) {
-        AppSnackBar.show("$queueExecutedCount queues executed");
+        unawaited(AppSnackBar.show('$queueExecutedCount queues executed'));
       }
 
       // Re-check queued actions
-      checkIsHasQueuedActions();
+      unawaited(checkIsHasQueuedActions());
 
       state = state.copyWith(isSyncronizing: false);
     } catch (e) {
       state = state.copyWith(isSyncronizing: false);
-      AppSnackBar.showError('Failed to sync data\n\n${e.toString()}');
+      unawaited(AppSnackBar.showError('Failed to sync data\n\n${e.toString()}'));
     }
   }
 
@@ -94,14 +96,14 @@ class MainNotifier extends Notifier<MainState> {
       state = state.copyWith(user: res.first.data as UserEntity?);
     }
 
-    if (res[1].isFailure) AppSnackBar.showError("Failed to sync product data");
-    if (res[2].isFailure) AppSnackBar.showError("Failed to sync transaction data");
+    if (res[1].isFailure) unawaited(AppSnackBar.showError('Failed to sync product data'));
+    if (res[2].isFailure) unawaited(AppSnackBar.showError('Failed to sync transaction data'));
 
     // Refresh products list
-    ref.read(productsNotifierProvider.notifier).getAllProducts();
+    unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
 
     // Check queued actions
-    checkIsHasQueuedActions();
+    unawaited(checkIsHasQueuedActions());
 
     // Notify to MainScreen
     state = state.copyWith(isLoaded: true);
@@ -129,7 +131,7 @@ class MainNotifier extends Notifier<MainState> {
 
   Future<void> onHasInternet(bool value) async {
     state = state.copyWith(isHasInternet: value);
-    if (value) checkAndSyncAllData();
+    if (value) unawaited(checkAndSyncAllData());
   }
 
   Future<void> checkIsHasQueuedActions() async {

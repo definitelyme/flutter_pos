@@ -1,6 +1,6 @@
-import '../../domain/entities/transaction_entity.dart';
-import 'ordered_product_model.dart';
-import 'user_model.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
+import 'package:flutter_pos/data/models/ordered_product_model.dart';
+import 'package:flutter_pos/data/models/user_model.dart';
 
 class TransactionModel {
   int id;

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:app_image/app_image.dart';
@@ -7,15 +8,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../providers/account/account_notifier.dart';
-import '../../providers/main/main_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_dialog.dart';
-import '../../widgets/app_icon_button.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_snack_bar.dart';
-import '../../widgets/app_text_field.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/account/account_notifier.dart';
+import 'package:flutter_pos/presentation/providers/main/main_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
+import 'package:flutter_pos/presentation/widgets/app_icon_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
 
 class ProfileFormScreen extends ConsumerStatefulWidget {
   const ProfileFormScreen({super.key});
@@ -81,12 +82,12 @@ class _ProfileFormScreenState extends ConsumerState<ProfileFormScreen> {
     if (res.isSuccess) {
       if (!mounted) return;
       Navigator.of(context).pop();
-      AppSnackBar.show('Profile updated');
+      unawaited(AppSnackBar.show('Profile updated'));
 
       // Refresh user data
-      ref.read(mainNotifierProvider.notifier).getAndSyncAllUserData();
+      unawaited(ref.read(mainNotifierProvider.notifier).getAndSyncAllUserData());
     } else {
-      AppDialog.showError(error: res.error.toString());
+      unawaited(AppDialog.showError(error: res.error.toString()));
     }
   }
 

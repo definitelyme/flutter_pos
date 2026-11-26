@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-import 'ordered_product_entity.dart';
-import 'user_entity.dart';
+import 'package:flutter_pos/domain/entities/ordered_product_entity.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart';
 
 class TransactionEntity extends Equatable {
   final int? id;

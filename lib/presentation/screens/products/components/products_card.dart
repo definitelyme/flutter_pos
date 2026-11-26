@@ -1,9 +1,9 @@
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/themes/app_sizes.dart';
-import '../../../../core/utilities/currency_formatter.dart';
-import '../../../../domain/entities/product_entity.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/domain/entities/product_entity.dart';
 
 class ProductsCard extends StatelessWidget {
   final ProductEntity product;
@@ -57,7 +57,7 @@ class ProductsCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    product.stock <= 0 ? _OutOfStock() : const SizedBox.shrink(),
+                    product.stock <= 0 ? const _OutOfStock() : const SizedBox.shrink(),
                   ],
                 ),
                 const SizedBox(height: 8),

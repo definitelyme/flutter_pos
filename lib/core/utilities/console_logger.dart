@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:logger/logger.dart';
 
-import 'debug_mode_wrapper.dart';
+import 'package:flutter_pos/core/utilities/debug_mode_wrapper.dart';
 
 enum LogType {
   debug,

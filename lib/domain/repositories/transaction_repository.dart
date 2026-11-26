@@ -1,5 +1,5 @@
-import '../../core/common/result.dart';
-import '../entities/transaction_entity.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/transaction_entity.dart';
 
 abstract class TransactionRepository {
   Future<Result<int>> syncAllUserTransactions(String userId);

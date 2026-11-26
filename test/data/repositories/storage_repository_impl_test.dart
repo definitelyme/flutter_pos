@@ -290,7 +290,7 @@ void main() {
       const imgPath = '/path/to/image.jpg';
 
       when(mockPingService.isConnected).thenReturn(true);
-      when(mockStorageRemoteDataSource.uploadUserPhoto(imgPath)).thenThrow(FormatException('Invalid image format'));
+      when(mockStorageRemoteDataSource.uploadUserPhoto(imgPath)).thenThrow(const FormatException('Invalid image format'));
 
       final result = await repository.uploadUserPhoto(imgPath);
 

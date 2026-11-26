@@ -1,5 +1,5 @@
-import '../../../core/common/result.dart';
-import '../../models/queued_action_model.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/data/models/queued_action_model.dart';
 
 abstract class QueuedActionDatasource {
   Future<Result<int>> createQueuedAction(QueuedActionModel queue);

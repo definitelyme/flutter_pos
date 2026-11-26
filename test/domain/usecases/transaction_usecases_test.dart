@@ -91,7 +91,7 @@ void main() {
 
     test('should get user transactions with all parameters', () async {
       // arrange
-      final params = BaseParams(
+      final params = const BaseParams(
         param: 'user123',
         orderBy: 'date',
         sortBy: 'desc',
@@ -100,7 +100,7 @@ void main() {
         contains: 'payment',
       );
       final transactions = [
-        TransactionEntity(
+        const TransactionEntity(
           id: 1,
           description: 'Payment 1',
           paymentMethod: '',
@@ -110,7 +110,7 @@ void main() {
           totalAmount: 100,
           totalOrderedProduct: 1,
         ),
-        TransactionEntity(
+        const TransactionEntity(
           id: 2,
           description: 'Payment 2',
           paymentMethod: '',
@@ -155,7 +155,7 @@ void main() {
 
     test('should return empty list when no transactions found', () async {
       // arrange
-      final params = BaseParams(param: 'user123');
+      final params = const BaseParams(param: 'user123');
       final result = Result<List<TransactionEntity>>.success(data: []);
 
       when(
@@ -188,13 +188,13 @@ void main() {
 
     test('should handle pagination correctly', () async {
       // arrange
-      final params = BaseParams(
+      final params = const BaseParams(
         param: 'user123',
         limit: 10,
         offset: 20,
       );
       final transactions = [
-        TransactionEntity(
+        const TransactionEntity(
           id: 21,
           paymentMethod: '',
           createdById: '',
@@ -203,7 +203,7 @@ void main() {
           totalAmount: 100,
           totalOrderedProduct: 1,
         ),
-        TransactionEntity(
+        const TransactionEntity(
           id: 22,
           paymentMethod: '',
           createdById: '',
@@ -254,7 +254,7 @@ void main() {
     test('should get transaction by id successfully', () async {
       // arrange
       const transactionId = 1;
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: transactionId,
         description: 'Test Transaction',
         paymentMethod: '',
@@ -318,7 +318,7 @@ void main() {
 
     test('should create transaction successfully', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         description: 'New Transaction',
         paymentMethod: '',
         createdById: '',
@@ -344,7 +344,7 @@ void main() {
 
     test('should return failure when creation fails', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         description: 'New Transaction',
         paymentMethod: '',
         createdById: '',
@@ -367,7 +367,7 @@ void main() {
 
     test('should handle validation error during creation', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         description: 'Invalid Transaction',
         paymentMethod: '',
         createdById: '',
@@ -398,7 +398,7 @@ void main() {
 
     test('should update transaction successfully', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: 1,
         description: 'Updated Transaction',
         paymentMethod: '',
@@ -424,7 +424,7 @@ void main() {
 
     test('should return failure when update fails', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: 1,
         description: 'Updated Transaction',
         paymentMethod: '',
@@ -448,7 +448,7 @@ void main() {
 
     test('should handle transaction not found during update', () async {
       // arrange
-      final transaction = TransactionEntity(
+      final transaction = const TransactionEntity(
         id: 999,
         description: 'Non-existent Transaction',
         paymentMethod: '',

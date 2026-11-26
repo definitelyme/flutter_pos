@@ -1,11 +1,13 @@
+import 'dart:async';
+
 import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/themes/app_sizes.dart';
-import '../../../../core/utilities/currency_formatter.dart';
-import '../../../widgets/app_button.dart';
-import '../../../widgets/app_dialog.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/currency_formatter.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
 
 class OrderCard extends StatefulWidget {
   final String name;
@@ -201,15 +203,17 @@ class _OrderCardState extends State<OrderCard> {
                       buttonColor: Theme.of(context).colorScheme.errorContainer.withValues(alpha: 0.32),
                       textColor: Theme.of(context).colorScheme.error,
                       onTap: () {
-                        AppDialog.show(
-                          title: 'Confirm',
-                          text: 'Are you sure want to remove this product?',
-                          rightButtonText: 'Remove',
-                          leftButtonText: 'Cancel',
-                          onTapRightButton: (context) {
-                            widget.onTapRemove!();
-                            context.pop();
-                          },
+                        unawaited(
+                          AppDialog.show(
+                            title: 'Confirm',
+                            text: 'Are you sure want to remove this product?',
+                            rightButtonText: 'Remove',
+                            leftButtonText: 'Cancel',
+                            onTapRightButton: (context) {
+                              widget.onTapRemove!();
+                              context.pop();
+                            },
+                          ),
                         );
                       },
                     ),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:app_image/app_image.dart';
@@ -8,14 +9,14 @@ import 'package:go_router/go_router.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../core/themes/app_sizes.dart';
-import '../../providers/products/product_form_notifier.dart';
-import '../../widgets/app_button.dart';
-import '../../widgets/app_dialog.dart';
-import '../../widgets/app_icon_button.dart';
-import '../../widgets/app_progress_indicator.dart';
-import '../../widgets/app_snack_bar.dart';
-import '../../widgets/app_text_field.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/presentation/providers/products/product_form_notifier.dart';
+import 'package:flutter_pos/presentation/widgets/app_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_dialog.dart';
+import 'package:flutter_pos/presentation/widgets/app_icon_button.dart';
+import 'package:flutter_pos/presentation/widgets/app_progress_indicator.dart';
+import 'package:flutter_pos/presentation/widgets/app_snack_bar.dart';
+import 'package:flutter_pos/presentation/widgets/app_text_field.dart';
 
 class ProductFormScreen extends ConsumerStatefulWidget {
   final int? id;
@@ -89,9 +90,9 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
     if (res.isSuccess) {
       if (!mounted) return;
       context.go('/products');
-      AppSnackBar.show('Product created');
+      unawaited(AppSnackBar.show('Product created'));
     } else {
-      AppDialog.showError(error: res.error?.toString());
+      unawaited(AppDialog.showError(error: res.error?.toString()));
     }
   }
 
@@ -103,9 +104,9 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
     if (res.isSuccess) {
       if (!mounted) return;
       context.pop();
-      AppSnackBar.show('Product updated');
+      unawaited(AppSnackBar.show('Product updated'));
     } else {
-      AppDialog.showError(error: res.error?.toString());
+      unawaited(AppDialog.showError(error: res.error?.toString()));
     }
   }
 
@@ -117,9 +118,9 @@ class _ProductFormScreenState extends ConsumerState<ProductFormScreen> {
     if (res.isSuccess) {
       if (!mounted) return;
       context.go('/products');
-      AppSnackBar.show('Product deleted');
+      unawaited(AppSnackBar.show('Product deleted'));
     } else {
-      AppDialog.showError(error: res.error?.toString());
+      unawaited(AppDialog.showError(error: res.error?.toString()));
     }
   }
 
@@ -389,17 +390,19 @@ class _DeleteButton extends StatelessWidget {
         textColor: Theme.of(context).colorScheme.error,
         buttonColor: Theme.of(context).colorScheme.surfaceContainerLowest,
         onTap: () {
-          AppDialog.show(
-            title: 'Confirm',
-            text: 'Are you sure want to delete this product?',
-            leftButtonText: 'Cancel',
-            rightButtonText: 'Delete',
-            rightButtonColor: Theme.of(context).colorScheme.errorContainer,
-            rightButtonTextColor: Theme.of(context).colorScheme.error,
-            onTapRightButton: (context) async {
-              context.pop();
-              onDeleteProduct();
-            },
+          unawaited(
+            AppDialog.show(
+              title: 'Confirm',
+              text: 'Are you sure want to delete this product?',
+              leftButtonText: 'Cancel',
+              rightButtonText: 'Delete',
+              rightButtonColor: Theme.of(context).colorScheme.errorContainer,
+              rightButtonTextColor: Theme.of(context).colorScheme.error,
+              onTapRightButton: (context) async {
+                context.pop();
+                onDeleteProduct();
+              },
+            ),
           );
         },
       ),

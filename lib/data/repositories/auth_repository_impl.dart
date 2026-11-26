@@ -1,7 +1,7 @@
-import '../../../../core/common/result.dart';
-import '../../domain/entities/user_entity.dart';
-import '../../domain/repositories/auth_repository.dart';
-import '../datasources/remote/auth_remote_datasource_impl.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart';
+import 'package:flutter_pos/domain/repositories/auth_repository.dart';
+import 'package:flutter_pos/data/datasources/remote/auth_remote_datasource_impl.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSourceImpl authRemoteDataSource;

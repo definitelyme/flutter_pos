@@ -1,6 +1,6 @@
 import 'package:device_info_plus/device_info_plus.dart';
 
-import '../../utilities/platform_wrapper.dart';
+import 'package:flutter_pos/core/utilities/platform_wrapper.dart';
 
 class DeviceInfoService {
   final DeviceInfoPlugin _deviceInfo;

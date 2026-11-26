@@ -36,7 +36,6 @@ migrate_working_dir/
 # Secrets and env
 *.json
 !config.example.json
-lib/firebase_options.dart
 .env
 
 # Symbolication related

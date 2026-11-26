@@ -2,9 +2,9 @@ import 'package:app_image/app_image.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../core/assets/assets.dart';
-import '../../../core/themes/app_sizes.dart';
-import '../../../core/utilities/external_launcher.dart';
+import 'package:flutter_pos/core/assets/assets.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/utilities/external_launcher.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -81,7 +81,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               const SizedBox(height: AppSizes.padding * 2),
               Text(
-                "This project serves as a learning resource and reference implementation for building Flutter apps with proper architecture and automatic data synchronization between local storage (SQLite) and cloud database (Firestore).\n\nThe app prioritizes local-first operations, storing all data in SQLite and automatically syncing with Firestore when online. When offline, all user actions (create, update, delete) are recorded as QueuedActions in the local database and automatically executed in sequence when internet connectivity is restored.",
+                'This project serves as a learning resource and reference implementation for building Flutter apps with proper architecture and automatic data synchronization between local storage (SQLite) and cloud database (Firestore).\n\nThe app prioritizes local-first operations, storing all data in SQLite and automatically syncing with Firestore when online. When offline, all user actions (create, update, delete) are recorded as QueuedActions in the local database and automatically executed in sequence when internet connectivity is restored.',
                 textAlign: TextAlign.justify,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
@@ -89,7 +89,7 @@ class _AboutScreenState extends State<AboutScreen> {
               Row(
                 children: [
                   Text(
-                    "Developed with ❤️ by",
+                    'Developed with ❤️ by',
                     textAlign: TextAlign.justify,
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    "Elriz Wiraswara",
+                    'Elriz Wiraswara',
                     textAlign: TextAlign.justify,
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "GitHub",
+                        'GitHub',
                         textAlign: TextAlign.justify,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
@@ -141,7 +141,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Website",
+                        'Website',
                         textAlign: TextAlign.justify,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,

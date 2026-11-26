@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/themes/app_sizes.dart';
+import 'package:flutter_pos/core/themes/app_sizes.dart';
 
 class AppDropDown<T> extends StatelessWidget {
   final T? selectedValue;

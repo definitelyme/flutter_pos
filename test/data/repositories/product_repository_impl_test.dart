@@ -329,7 +329,7 @@ void main() {
   });
 
   group('createProduct', () {
-    final product = ProductEntity(
+    final product = const ProductEntity(
       id: null,
       createdById: 'user123',
       name: 'New Product',
@@ -381,7 +381,7 @@ void main() {
   });
 
   group('updateProduct', () {
-    final product = ProductEntity(
+    final product = const ProductEntity(
       id: 1,
       createdById: 'user123',
       name: 'Updated Product',

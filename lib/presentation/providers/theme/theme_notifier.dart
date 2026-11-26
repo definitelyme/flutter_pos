@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/constants/constants.dart';
-import '../../../core/themes/app_theme.dart';
-import '../../providers/theme/theme_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/constants/constants.dart';
+import 'package:flutter_pos/core/themes/app_theme.dart';
+import 'package:flutter_pos/presentation/providers/theme/theme_state.dart';
 
 final themeNotifierProvider = NotifierProvider<ThemeNotifier, ThemeState>(
   ThemeNotifier.new,

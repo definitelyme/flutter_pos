@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import '../../utilities/console_logger.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
 
 class PingService {
   Process? _process;
@@ -65,7 +65,7 @@ class PingService {
     if (_process != null) return;
     if (_isProcessStarted) return;
 
-    _runPingProcess();
+    unawaited(_runPingProcess());
   }
 
   Future<void> _runPingProcess() async {
@@ -114,7 +114,7 @@ class PingService {
     // Check if the status has changed
     if (_previousStatus != isConnected) {
       _previousStatus = isConnected;
-      cl("isConnected: $isConnected");
+      cl('isConnected: $isConnected');
       // Notify connection status listeners
       for (var e in _connectionStatusListeners) {
         e.call(isConnected);

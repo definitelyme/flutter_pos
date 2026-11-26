@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'app/app.dart';
-import 'app/di/app_providers.dart';
-import 'core/services/database/database_service.dart';
-import 'firebase_options.dart';
+import 'package:flutter_pos/app/app.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/services/database/database_service.dart';
+import 'package:flutter_pos/firebase_options.dart';
 
 void main() async {
   // Initialize binding

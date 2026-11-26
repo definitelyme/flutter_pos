@@ -1,5 +1,5 @@
-import '../../core/common/result.dart';
-import '../entities/user_entity.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/domain/entities/user_entity.dart';
 
 abstract class UserRepository {
   Future<Result<UserEntity?>> getUser(String userId);

@@ -24,7 +24,7 @@ void main() {
     datasource = ProductLocalDatasourceImpl(appDatabase);
   });
 
-  const userId = "user123";
+  const userId = 'user123';
 
   ProductModel createSampleProduct({int id = 1}) {
     return ProductModel(

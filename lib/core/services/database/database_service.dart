@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-import '../../utilities/console_logger.dart';
-import 'database_config.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/core/services/database/database_config.dart';
 
 class DatabaseService {
   DatabaseService._internal();

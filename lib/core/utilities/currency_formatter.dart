@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-import '../locale/app_locale.dart';
+import 'package:flutter_pos/core/locale/app_locale.dart';
 
 /// Currency Formatter dependent on [AppLocale]
 class CurrencyFormatter {
@@ -27,7 +27,7 @@ class CurrencyFormatter {
     return NumberFormat.currency(
       locale: AppLocale.defaultLocale.countryCode,
       decimalDigits: decimalDigits ?? defaultDecimalDigits,
-      symbol: "",
+      symbol: '',
     ).format(data);
   }
 

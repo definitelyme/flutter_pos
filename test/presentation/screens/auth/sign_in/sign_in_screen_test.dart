@@ -18,7 +18,7 @@ void main() {
   }) {
     final effectiveMainState =
         mainState ??
-        MainState(
+        const MainState(
           isLoaded: false,
           isHasInternet: false,
           isHasQueuedActions: false,

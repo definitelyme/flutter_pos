@@ -1,12 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../app/di/app_providers.dart';
-import '../../../core/common/result.dart';
-import '../../../core/utilities/console_logger.dart';
-import '../../../domain/usecases/auth_usecases.dart';
-import '../../../domain/usecases/params/no_param.dart';
-import '../../../domain/usecases/user_usecases.dart';
-import 'auth_state.dart';
+import 'package:flutter_pos/app/di/app_providers.dart';
+import 'package:flutter_pos/core/common/result.dart';
+import 'package:flutter_pos/core/utilities/console_logger.dart';
+import 'package:flutter_pos/domain/usecases/auth_usecases.dart';
+import 'package:flutter_pos/domain/usecases/params/no_param.dart';
+import 'package:flutter_pos/domain/usecases/user_usecases.dart';
+import 'package:flutter_pos/presentation/providers/auth/auth_state.dart';
 
 final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
   AuthNotifier.new,
@@ -15,7 +17,7 @@ final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
 class AuthNotifier extends Notifier<AuthState> {
   @override
   AuthState build() {
-    _initialize();
+    unawaited(_initialize());
     return const AuthState(isChecking: true);
   }
 
