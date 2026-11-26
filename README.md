@@ -112,15 +112,13 @@ The app talks to the Firebase Emulator Suite on your machine, so you do not need
 - [fvm](https://fvm.app/), which installs the Flutter version this repo pins in `.fvmrc`
 - Java 21 or newer on your `PATH`, which the Firebase emulators need
 - Node.js, so `npx` can run the Firebase CLI
-- An Android emulator or a phone
+- An Android emulator or an Android phone
 
 ### Set up
 
-Clone the repository and install the pinned Flutter version:
+From the project folder, install the pinned Flutter version:
 
 ```sh
-git clone https://github.com/elrizwiraswara/flutter_pos.git
-cd flutter_pos
 fvm install
 fvm use
 flutter pub get
@@ -142,13 +140,13 @@ On the Android emulator, run `flutter run`. In VS Code, use the default launch c
 
 Debug builds show a "Sign in with test account" button on the sign-in screen. The account is `cashier@flutterpos.test` with the password `cashier123`. Release builds do not have it.
 
-To run on a phone on the same Wi-Fi, pass your computer's LAN IP address:
+To run on an Android phone on the same Wi-Fi, pass your computer's LAN IP address:
 
 ```sh
 flutter run --dart-define=EMULATOR_HOST=<your computer's LAN IP>
 ```
 
-The Google sign-in launch configuration still reads `GOOGLE_SERVER_CLIENT_ID` from a `config.json` file, passed with `--dart-define-from-file config.json`.
+The Google sign-in launch configuration still reads `GOOGLE_SERVER_CLIENT_ID` from a `config.json` file, so copy `config.example.json` to `config.json` first. It is passed with `--dart-define-from-file config.json`.
 
 ### Test
 
