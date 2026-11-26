@@ -6,7 +6,8 @@
 
 import 'dart:async' as _i3;
 
-import 'package:flutter_pos/core/data/export.dart' as _i2;
+import 'package:flutter_pos/core/data/services/connectivity/ping_service.dart'
+    as _i2;
 import 'package:flutter_pos/core/domain/export.dart' as _i5;
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart' as _i4;
 import 'package:flutter_pos/features/account/data/export.dart' as _i7;
@@ -135,12 +136,12 @@ class MockPingService extends _i1.Mock implements _i2.PingService {
   );
 }
 
-/// A class which mocks [QueuedActionLocalDatasourceImpl].
+/// A class which mocks [QueuedActionDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
-    implements _i4.QueuedActionLocalDatasourceImpl {
-  MockQueuedActionLocalDatasourceImpl() {
+class MockQueuedActionDatasource extends _i1.Mock
+    implements _i4.QueuedActionDatasource {
+  MockQueuedActionDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -158,19 +159,6 @@ class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
             ),
           )
           as _i3.Future<_i5.Result<int>>);
-
-  @override
-  _i3.Future<_i5.Result<void>> deleteQueuedAction(int? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteQueuedAction, [id]),
-            returnValue: _i3.Future<_i5.Result<void>>.value(
-              _i6.dummyValue<_i5.Result<void>>(
-                this,
-                Invocation.method(#deleteQueuedAction, [id]),
-              ),
-            ),
-          )
-          as _i3.Future<_i5.Result<void>>);
 
   @override
   _i3.Future<_i5.Result<_i4.QueuedActionModel?>> getQueuedAction(int? id) =>
@@ -199,6 +187,19 @@ class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
                 ),
           )
           as _i3.Future<_i5.Result<List<_i4.QueuedActionModel>>>);
+
+  @override
+  _i3.Future<_i5.Result<void>> deleteQueuedAction(int? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteQueuedAction, [id]),
+            returnValue: _i3.Future<_i5.Result<void>>.value(
+              _i6.dummyValue<_i5.Result<void>>(
+                this,
+                Invocation.method(#deleteQueuedAction, [id]),
+              ),
+            ),
+          )
+          as _i3.Future<_i5.Result<void>>);
 }
 
 /// A class which mocks [UserRemoteDatasourceImpl].

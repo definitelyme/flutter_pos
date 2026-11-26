@@ -16,7 +16,7 @@ import 'queued_action_repository_impl_test.mocks.dart';
 // Generate mocks
 @GenerateMocks([
   PingService,
-  QueuedActionLocalDatasourceImpl,
+  QueuedActionDatasource,
   UserRemoteDatasourceImpl,
   TransactionRemoteDatasourceImpl,
   ProductRemoteDatasourceImpl,
@@ -24,14 +24,14 @@ import 'queued_action_repository_impl_test.mocks.dart';
 void main() {
   late QueuedActionRepositoryImpl repository;
   late MockPingService mockPingService;
-  late MockQueuedActionLocalDatasourceImpl mockQueuedActionDatasource;
+  late MockQueuedActionDatasource mockQueuedActionDatasource;
   late MockUserRemoteDatasourceImpl mockUserRemoteDatasource;
   late MockTransactionRemoteDatasourceImpl mockTransactionRemoteDatasource;
   late MockProductRemoteDatasourceImpl mockProductRemoteDatasource;
 
   setUp(() {
     mockPingService = MockPingService();
-    mockQueuedActionDatasource = MockQueuedActionLocalDatasourceImpl();
+    mockQueuedActionDatasource = MockQueuedActionDatasource();
     mockUserRemoteDatasource = MockUserRemoteDatasourceImpl();
     mockTransactionRemoteDatasource = MockTransactionRemoteDatasourceImpl();
     mockProductRemoteDatasource = MockProductRemoteDatasourceImpl();

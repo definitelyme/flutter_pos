@@ -1,7 +1,7 @@
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 
-abstract class TransactionDatasource {
+abstract class TransactionRemoteDatasource {
   Future<Result<int>> createTransaction(TransactionModel transaction);
 
   Future<Result<void>> updateTransaction(TransactionModel transaction);

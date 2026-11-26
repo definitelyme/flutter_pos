@@ -257,12 +257,12 @@ class MockUserRemoteDatasourceImpl extends _i1.Mock
           as _i3.Future<_i5.Result<_i4.UserModel?>>);
 }
 
-/// A class which mocks [QueuedActionLocalDatasourceImpl].
+/// A class which mocks [QueuedActionDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
-    implements _i7.QueuedActionLocalDatasourceImpl {
-  MockQueuedActionLocalDatasourceImpl() {
+class MockQueuedActionDatasource extends _i1.Mock
+    implements _i7.QueuedActionDatasource {
+  MockQueuedActionDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -280,19 +280,6 @@ class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
             ),
           )
           as _i3.Future<_i5.Result<int>>);
-
-  @override
-  _i3.Future<_i5.Result<void>> deleteQueuedAction(int? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteQueuedAction, [id]),
-            returnValue: _i3.Future<_i5.Result<void>>.value(
-              _i6.dummyValue<_i5.Result<void>>(
-                this,
-                Invocation.method(#deleteQueuedAction, [id]),
-              ),
-            ),
-          )
-          as _i3.Future<_i5.Result<void>>);
 
   @override
   _i3.Future<_i5.Result<_i7.QueuedActionModel?>> getQueuedAction(int? id) =>
@@ -321,4 +308,17 @@ class MockQueuedActionLocalDatasourceImpl extends _i1.Mock
                 ),
           )
           as _i3.Future<_i5.Result<List<_i7.QueuedActionModel>>>);
+
+  @override
+  _i3.Future<_i5.Result<void>> deleteQueuedAction(int? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteQueuedAction, [id]),
+            returnValue: _i3.Future<_i5.Result<void>>.value(
+              _i6.dummyValue<_i5.Result<void>>(
+                this,
+                Invocation.method(#deleteQueuedAction, [id]),
+              ),
+            ),
+          )
+          as _i3.Future<_i5.Result<void>>);
 }

@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 
-class UserRemoteDatasourceImpl extends UserDatasource {
+class UserRemoteDatasourceImpl implements UserRemoteDatasource {
   final FirebaseFirestore _firebaseFirestore;
 
   UserRemoteDatasourceImpl(this._firebaseFirestore);

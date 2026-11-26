@@ -6,7 +6,7 @@ import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 
-class TransactionLocalDatasourceImpl extends TransactionDatasource {
+class TransactionLocalDatasourceImpl implements TransactionLocalDatasource {
   final DatabaseService _databaseService;
 
   TransactionLocalDatasourceImpl(this._databaseService);

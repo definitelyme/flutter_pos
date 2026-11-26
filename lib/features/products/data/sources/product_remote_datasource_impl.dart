@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 
-class ProductRemoteDatasourceImpl extends ProductDatasource {
+class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
   final FirebaseFirestore _firebaseFirestore;
 
   ProductRemoteDatasourceImpl(this._firebaseFirestore);

@@ -14,20 +14,20 @@ import 'transaction_repository_impl_test.mocks.dart';
   PingService,
   TransactionLocalDatasourceImpl,
   TransactionRemoteDatasourceImpl,
-  QueuedActionLocalDatasourceImpl,
+  QueuedActionDatasource,
 ])
 void main() {
   late TransactionRepositoryImpl repository;
   late MockPingService mockPingService;
   late MockTransactionLocalDatasourceImpl mockLocalDatasource;
   late MockTransactionRemoteDatasourceImpl mockRemoteDatasource;
-  late MockQueuedActionLocalDatasourceImpl mockQueuedActionDatasource;
+  late MockQueuedActionDatasource mockQueuedActionDatasource;
 
   setUp(() {
     mockPingService = MockPingService();
     mockLocalDatasource = MockTransactionLocalDatasourceImpl();
     mockRemoteDatasource = MockTransactionRemoteDatasourceImpl();
-    mockQueuedActionDatasource = MockQueuedActionLocalDatasourceImpl();
+    mockQueuedActionDatasource = MockQueuedActionDatasource();
 
     // Provide dummy values for Mockito
     provideDummy<Result<List<TransactionModel>>>(

@@ -5,7 +5,7 @@ import 'package:flutter_pos/features/account/data/export.dart';
 import 'package:flutter_pos/features/products/data/export.dart';
 import 'package:flutter_pos/features/transactions/data/export.dart';
 
-class TransactionRemoteDatasourceImpl extends TransactionDatasource {
+class TransactionRemoteDatasourceImpl implements TransactionRemoteDatasource {
   final FirebaseFirestore _firebaseFirestore;
 
   TransactionRemoteDatasourceImpl(this._firebaseFirestore);

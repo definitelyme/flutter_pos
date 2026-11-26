@@ -4,7 +4,7 @@ import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
 
-class UserLocalDatasourceImpl extends UserDatasource {
+class UserLocalDatasourceImpl implements UserLocalDatasource {
   final DatabaseService _databaseService;
 
   UserLocalDatasourceImpl(this._databaseService);

@@ -4,7 +4,7 @@ import 'package:flutter_pos/features/auth/data/export.dart';
 import 'package:flutter_pos/features/auth/domain/export.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSourceImpl authRemoteDataSource;
+  final AuthDataSource authRemoteDataSource;
 
   AuthRepositoryImpl({
     required this.authRemoteDataSource,

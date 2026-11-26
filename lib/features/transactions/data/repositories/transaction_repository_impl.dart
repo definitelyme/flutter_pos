@@ -11,7 +11,7 @@ class TransactionRepositoryImpl extends TransactionRepository {
   final PingService pingService;
   final TransactionLocalDatasourceImpl transactionLocalDatasource;
   final TransactionRemoteDatasourceImpl transactionRemoteDatasource;
-  final QueuedActionLocalDatasourceImpl queuedActionLocalDatasource;
+  final QueuedActionDatasource queuedActionLocalDatasource;
 
   TransactionRepositoryImpl({
     required this.pingService,

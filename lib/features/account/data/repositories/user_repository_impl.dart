@@ -11,7 +11,7 @@ class UserRepositoryImpl extends UserRepository {
   final PingService pingService;
   final UserLocalDatasourceImpl userLocalDatasource;
   final UserRemoteDatasourceImpl userRemoteDatasource;
-  final QueuedActionLocalDatasourceImpl queuedActionLocalDatasource;
+  final QueuedActionDatasource queuedActionLocalDatasource;
 
   UserRepositoryImpl({
     required this.pingService,

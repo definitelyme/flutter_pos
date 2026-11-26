@@ -11,7 +11,7 @@ class ProductRepositoryImpl extends ProductRepository {
   final PingService pingService;
   final ProductLocalDatasourceImpl productLocalDatasource;
   final ProductRemoteDatasourceImpl productRemoteDatasource;
-  final QueuedActionLocalDatasourceImpl queuedActionLocalDatasource;
+  final QueuedActionDatasource queuedActionLocalDatasource;
 
   ProductRepositoryImpl({
     required this.pingService,

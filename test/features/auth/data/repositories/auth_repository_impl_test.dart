@@ -9,13 +9,13 @@ import 'package:mockito/mockito.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
 // Generate mocks with: flutter pub run build_runner build
-@GenerateMocks([AuthRemoteDataSourceImpl, UserModel, UserEntity])
+@GenerateMocks([AuthDataSource, UserModel, UserEntity])
 void main() {
-  late MockAuthRemoteDataSourceImpl mockRemoteDataSource;
+  late MockAuthDataSource mockRemoteDataSource;
   late AuthRepositoryImpl repository;
 
   setUp(() {
-    mockRemoteDataSource = MockAuthRemoteDataSourceImpl();
+    mockRemoteDataSource = MockAuthDataSource();
     repository = AuthRepositoryImpl(authRemoteDataSource: mockRemoteDataSource);
 
     provideDummy<Result<UserModel>>(Result.success(data: UserModel(id: '')));
