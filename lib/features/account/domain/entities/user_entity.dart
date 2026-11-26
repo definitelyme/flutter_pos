@@ -67,7 +67,8 @@ class UserEntity extends Equatable {
 }
 
 enum AuthProvider {
-  google('google');
+  google('google'),
+  email('email');
   // add other if needed
 
   final String value;

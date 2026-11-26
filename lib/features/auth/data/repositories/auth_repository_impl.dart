@@ -26,6 +26,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Result<UserEntity>> signInWithTestAccount() async {
+    try {
+      final res = await authRemoteDataSource.signInWithTestAccount();
+      if (res.isFailure) return Result.failure(error: res.error!);
+
+      return Result.success(data: res.data!.toEntity());
+    } catch (e) {
+      return Result.failure(error: e);
+    }
+  }
+
+  @override
   Future<Result<void>> signOut() async {
     try {
       final res = await authRemoteDataSource.signOut();

@@ -38,6 +38,12 @@ migrate_working_dir/
 !config.example.json
 .env
 
+# Firebase emulators
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+!firebase/emulator-seed/**
+
 # Symbolication related
 app.*.symbols
 

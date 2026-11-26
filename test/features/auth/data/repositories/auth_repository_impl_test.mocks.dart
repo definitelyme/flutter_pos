@@ -56,6 +56,19 @@ class MockAuthDataSource extends _i1.Mock implements _i3.AuthDataSource {
           as _i4.Future<_i5.Result<_i6.UserModel>>);
 
   @override
+  _i4.Future<_i5.Result<_i6.UserModel>> signInWithTestAccount() =>
+      (super.noSuchMethod(
+            Invocation.method(#signInWithTestAccount, []),
+            returnValue: _i4.Future<_i5.Result<_i6.UserModel>>.value(
+              _i7.dummyValue<_i5.Result<_i6.UserModel>>(
+                this,
+                Invocation.method(#signInWithTestAccount, []),
+              ),
+            ),
+          )
+          as _i4.Future<_i5.Result<_i6.UserModel>>);
+
+  @override
   _i4.Future<_i5.Result<void>> signOut() =>
       (super.noSuchMethod(
             Invocation.method(#signOut, []),

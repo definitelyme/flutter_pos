@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app_image/app_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,6 +22,10 @@ class SignInScreen extends StatelessWidget {
           children: [
             _WelcomeMessage(),
             _SignInButton(),
+            if (kDebugMode) ...[
+              SizedBox(height: AppSizes.padding / 2),
+              _TestAccountSignInButton(),
+            ],
           ],
         ),
       ),
@@ -73,6 +78,31 @@ class _SignInButton extends ConsumerWidget {
       onTap: () async {
         var res = await AppDialog.showProgress(() async {
           return ref.read(authNotifierProvider.notifier).signIn();
+        });
+
+        if (res.isSuccess) {
+          ref.read(appRoutesProvider).router.refresh();
+        } else {
+          unawaited(AppDialog.showError(error: res.error?.toString()));
+        }
+      },
+    );
+  }
+}
+
+class _TestAccountSignInButton extends ConsumerWidget {
+  const _TestAccountSignInButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return AppButton(
+      text: 'Sign in with test account',
+      buttonColor: Theme.of(context).colorScheme.surface,
+      borderColor: Theme.of(context).colorScheme.primary,
+      textColor: Theme.of(context).colorScheme.primary,
+      onTap: () async {
+        var res = await AppDialog.showProgress(() async {
+          return ref.read(authNotifierProvider.notifier).signInWithTestAccount();
         });
 
         if (res.isSuccess) {

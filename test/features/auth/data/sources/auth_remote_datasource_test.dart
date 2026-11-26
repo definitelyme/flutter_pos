@@ -184,6 +184,32 @@ void main() {
     });
   });
 
+  test('signInWithTestAccount signs in with the test account credentials', () async {
+    // Arrange
+    final mockUserCredential = MockUserCredential();
+    final mockUser = MockUser();
+
+    when(
+      mockFirebaseAuth.signInWithEmailAndPassword(email: 'cashier@flutterpos.test', password: 'cashier123'),
+    ).thenAnswer((_) async => mockUserCredential);
+    when(mockUserCredential.user).thenReturn(mockUser);
+    when(mockUser.uid).thenReturn('test-cashier');
+    when(mockUser.email).thenReturn('cashier@flutterpos.test');
+    when(mockUser.displayName).thenReturn('Test Cashier');
+    when(mockUser.photoURL).thenReturn(null);
+    when(mockUser.phoneNumber).thenReturn(null);
+
+    // Act
+    final result = await dataSource.signInWithTestAccount();
+
+    // Assert
+    expect(result.isSuccess, true);
+    expect(result.data!.id, 'test-cashier');
+    verify(
+      mockFirebaseAuth.signInWithEmailAndPassword(email: 'cashier@flutterpos.test', password: 'cashier123'),
+    ).called(1);
+  });
+
   group('signOut', () {
     test('successfully signs out from Firebase and Google', () async {
       // Arrange

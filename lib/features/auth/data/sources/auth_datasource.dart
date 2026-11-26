@@ -4,6 +4,8 @@ import 'package:flutter_pos/features/account/data/export.dart';
 abstract class AuthDataSource {
   Future<Result<UserModel>> signInWithGoogle();
 
+  Future<Result<UserModel>> signInWithTestAccount();
+
   Future<Result<void>> signOut();
 
   Future<Result<UserModel?>> getCurrentUser();

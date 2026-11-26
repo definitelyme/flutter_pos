@@ -71,6 +71,8 @@ import 'package:flutter_pos/features/auth/domain/usecases/get_current_user_useca
     as _i129;
 import 'package:flutter_pos/features/auth/domain/usecases/sign_in_with_google_usecase.dart'
     as _i814;
+import 'package:flutter_pos/features/auth/domain/usecases/sign_in_with_test_account_usecase.dart'
+    as _i1039;
 import 'package:flutter_pos/features/auth/domain/usecases/sign_out_usecase.dart'
     as _i909;
 import 'package:flutter_pos/features/products/data/export.dart' as _i152;
@@ -209,6 +211,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i814.SignInWithGoogleUsecase>(
       () => _i814.SignInWithGoogleUsecase(gh<_i247.AuthRepository>()),
+    );
+    gh.factory<_i1039.SignInWithTestAccountUsecase>(
+      () => _i1039.SignInWithTestAccountUsecase(gh<_i247.AuthRepository>()),
     );
     gh.factory<_i909.SignOutUsecase>(
       () => _i909.SignOutUsecase(gh<_i247.AuthRepository>()),

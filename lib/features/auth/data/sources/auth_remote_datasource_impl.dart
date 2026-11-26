@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,6 +7,7 @@ import 'package:flutter_pos/config/export.dart';
 import 'package:flutter_pos/core/constants/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/account/data/export.dart';
+import 'package:flutter_pos/features/account/domain/export.dart';
 import 'package:flutter_pos/features/auth/data/export.dart';
 import 'package:flutter_pos/utils/utils.dart';
 
@@ -48,6 +49,24 @@ class AuthRemoteDataSourceImpl implements AuthDataSource {
       }
 
       return Result.success(data: UserModel.fromFirebaseUser(userCredential.user!));
+    } catch (e) {
+      return Result.failure(error: e);
+    }
+  }
+
+  @override
+  Future<Result<UserModel>> signInWithTestAccount() async {
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+        email: testAccountEmail,
+        password: testAccountPassword,
+      );
+
+      if (userCredential.user == null) {
+        return Result.failure(error: 'User data is null after sign-in.');
+      }
+
+      return Result.success(data: UserModel.fromFirebaseUser(userCredential.user!, authProvider: AuthProvider.email));
     } catch (e) {
       return Result.failure(error: e);
     }
