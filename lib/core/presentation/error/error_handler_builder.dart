@@ -21,7 +21,7 @@ class ErrorHandlerBuilder extends ConsumerStatefulWidget {
 }
 
 class ErrorHandlerBuilderState extends ConsumerState<ErrorHandlerBuilder> {
-  ErrorLoggerService get _errorLoggerService => ref.read(errorLoggerServiceProvider);
+  ErrorLoggerService get _errorLoggerService => getIt();
   AppRoutes get _appRoutes => ref.read(appRoutesProvider);
 
   @override

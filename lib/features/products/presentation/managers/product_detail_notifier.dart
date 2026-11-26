@@ -8,14 +8,15 @@ final productDetailNotifierProvider = NotifierProvider.autoDispose<ProductDetail
 );
 
 class ProductDetailNotifier extends AutoDisposeNotifier<ProductEntity?> {
+  GetProductUsecase get _getProduct => getIt();
+
   @override
   ProductEntity? build() {
     return null;
   }
 
   Future<ProductEntity?> getProductDetail(int id) async {
-    final productRepository = ref.read(productRepositoryProvider);
-    var res = await GetProductUsecase(productRepository).call(id);
+    var res = await _getProduct.execute(id);
 
     if (res.isSuccess) {
       state = res.data;

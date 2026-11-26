@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
+import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
 import 'package:flutter_pos/features/account/presentation/export.dart';
 import 'package:flutter_pos/managers/export.dart';
@@ -178,6 +179,8 @@ class _ConnectionTypeDropDown extends ConsumerWidget {
 class _DevicesHeader extends ConsumerWidget {
   const _DevicesHeader();
 
+  PrinterService get _printerService => getIt();
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isScanning = ref.watch(printerSettingsNotifierProvider.select((p) => p.isScanning));
@@ -230,7 +233,7 @@ class _DevicesHeader extends ConsumerWidget {
               iconSize: 18,
               enabled: hasSelectedPrinter && !isConnecting,
               onTap: () async {
-                final result = await ref.read(printerServiceProvider).testPrint();
+                final result = await _printerService.testPrint();
 
                 if (result.isFailure) {
                   unawaited(AppSnackBar.showError(result.error.toString()));

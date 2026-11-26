@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:unified_esc_pos_printer/unified_esc_pos_printer.dart';
 
 import 'package:flutter_pos/core/constants/export.dart';
+import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
 import 'package:flutter_pos/features/account/presentation/export.dart';
 import 'package:flutter_pos/managers/export.dart';
@@ -14,11 +15,12 @@ final printerSettingsNotifierProvider = NotifierProvider.autoDispose<PrinterSett
 );
 
 class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> {
+  PrinterService get _printerService => getIt();
   SharedPreferences get _sharedPreferences => getIt();
 
   @override
   PrinterSettingsState build() {
-    final printerService = ref.watch(printerServiceProvider);
+    final printerService = _printerService;
     return PrinterSettingsState(
       paperSize: printerService.paperSize,
       selectedTypes: {
@@ -33,12 +35,12 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
   void setPaperSize(PaperSize size) {
     if (state.paperSize == size) return;
 
-    ref.read(printerServiceProvider).setPaperSize(size);
+    _printerService.setPaperSize(size);
     state = state.copyWith(paperSize: size);
   }
 
   int get selectedPrinterIndex {
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     if (printerService.selectedPrinter == null) return -1;
     final selectedId = printerService.getDeviceId(printerService.selectedPrinter!);
     return state.printers.indexWhere(
@@ -61,7 +63,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
   Future<void> getAndSelectPrinter() async {
     if (state.isScanning || state.isDisconnecting) return;
 
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     final sharedPreferences = _sharedPreferences;
 
     state = state.copyWith(isScanning: true);
@@ -88,7 +90,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
   }
 
   Future<void> onSelectPrinter(PrinterDevice printer) async {
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     final sharedPreferences = _sharedPreferences;
 
     final deviceId = printerService.getDeviceId(printer);
@@ -111,7 +113,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
   Future<void> disconnectPrinter() async {
     if (state.isDisconnecting || state.connectingDeviceId != null) return;
 
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     final sharedPreferences = _sharedPreferences;
 
     state = state.copyWith(isDisconnecting: true);
@@ -130,7 +132,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
   }
 
   bool isConnectingPrinter(PrinterDevice device) {
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     return state.connectingDeviceId == printerService.getDeviceId(device);
   }
 
@@ -148,7 +150,7 @@ class PrinterSettingsNotifier extends AutoDisposeNotifier<PrinterSettingsState> 
     final current = state.printers;
     if (current.length != printers.length) return false;
 
-    final printerService = ref.read(printerServiceProvider);
+    final printerService = _printerService;
     for (int i = 0; i < printers.length; i++) {
       if (printerService.getDeviceId(current[i]) != printerService.getDeviceId(printers[i])) {
         return false;

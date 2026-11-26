@@ -42,7 +42,7 @@ void main() {
       when(mockUserRepository.getUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response, result);
@@ -60,7 +60,7 @@ void main() {
       when(mockUserRepository.getUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.data, isNull);
@@ -76,7 +76,7 @@ void main() {
       when(mockUserRepository.getUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -105,7 +105,7 @@ void main() {
       when(mockUserRepository.createUser(user)).thenAnswer((_) async => createUserResult);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response, createUserResult);
@@ -132,7 +132,7 @@ void main() {
       when(mockUserRepository.getUser(user.id)).thenAnswer((_) async => getUserResult);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isSuccess, true);
@@ -156,7 +156,7 @@ void main() {
       when(mockUserRepository.createUser(user)).thenAnswer((_) async => createUserResult);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isFailure, true);
@@ -178,7 +178,7 @@ void main() {
       when(mockUserRepository.createUser(user)).thenAnswer((_) async => createUserResult);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isFailure, true);
@@ -206,7 +206,7 @@ void main() {
       when(mockUserRepository.updateUser(user)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response, result);
@@ -227,7 +227,7 @@ void main() {
       when(mockUserRepository.updateUser(user)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isFailure, true);
@@ -246,7 +246,7 @@ void main() {
       when(mockUserRepository.updateUser(user)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isFailure, true);
@@ -265,7 +265,7 @@ void main() {
       when(mockUserRepository.updateUser(user)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(user);
+      final response = await usecase.execute(user);
 
       // assert
       expect(response.isFailure, true);
@@ -288,7 +288,7 @@ void main() {
       when(mockUserRepository.deleteUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response, result);
@@ -305,7 +305,7 @@ void main() {
       when(mockUserRepository.deleteUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -320,7 +320,7 @@ void main() {
       when(mockUserRepository.deleteUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -335,7 +335,7 @@ void main() {
       when(mockUserRepository.deleteUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -350,7 +350,7 @@ void main() {
       when(mockUserRepository.deleteUser(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);

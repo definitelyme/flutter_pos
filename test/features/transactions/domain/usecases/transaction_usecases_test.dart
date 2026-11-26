@@ -39,7 +39,7 @@ void main() {
       when(mockTransactionRepository.syncAllUserTransactions(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response, result);
@@ -56,7 +56,7 @@ void main() {
       when(mockTransactionRepository.syncAllUserTransactions(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -71,7 +71,7 @@ void main() {
       when(mockTransactionRepository.syncAllUserTransactions(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response.isFailure, true);
@@ -132,7 +132,7 @@ void main() {
       ).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(params);
+      final response = await usecase.execute(params);
 
       // assert
       expect(response, result);
@@ -167,7 +167,7 @@ void main() {
       ).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(params);
+      final response = await usecase.execute(params);
 
       // assert
       expect(response.data, isEmpty);
@@ -224,7 +224,7 @@ void main() {
       ).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(params);
+      final response = await usecase.execute(params);
 
       // assert
       expect(response.data?.length, 2);
@@ -266,7 +266,7 @@ void main() {
       when(mockTransactionRepository.getTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response, result);
@@ -283,7 +283,7 @@ void main() {
       when(mockTransactionRepository.getTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response.data, isNull);
@@ -298,7 +298,7 @@ void main() {
       when(mockTransactionRepository.getTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response.isFailure, true);
@@ -330,7 +330,7 @@ void main() {
       when(mockTransactionRepository.createTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response, result);
@@ -355,7 +355,7 @@ void main() {
       when(mockTransactionRepository.createTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response.isFailure, true);
@@ -378,7 +378,7 @@ void main() {
       when(mockTransactionRepository.createTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response.isFailure, true);
@@ -410,7 +410,7 @@ void main() {
       when(mockTransactionRepository.updateTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response, result);
@@ -436,7 +436,7 @@ void main() {
       when(mockTransactionRepository.updateTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response.isFailure, true);
@@ -460,7 +460,7 @@ void main() {
       when(mockTransactionRepository.updateTransaction(transaction)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transaction);
+      final response = await usecase.execute(transaction);
 
       // assert
       expect(response.isFailure, true);
@@ -483,7 +483,7 @@ void main() {
       when(mockTransactionRepository.deleteTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response, result);
@@ -500,7 +500,7 @@ void main() {
       when(mockTransactionRepository.deleteTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response.isFailure, true);
@@ -515,7 +515,7 @@ void main() {
       when(mockTransactionRepository.deleteTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response.isFailure, true);
@@ -530,7 +530,7 @@ void main() {
       when(mockTransactionRepository.deleteTransaction(transactionId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(transactionId);
+      final response = await usecase.execute(transactionId);
 
       // assert
       expect(response.isFailure, true);

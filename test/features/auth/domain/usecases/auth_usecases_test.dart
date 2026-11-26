@@ -50,7 +50,7 @@ void main() {
       when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -65,7 +65,7 @@ void main() {
       when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -88,7 +88,7 @@ void main() {
       when(mockAuthRepository.signOut()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -103,7 +103,7 @@ void main() {
       when(mockAuthRepository.signOut()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -131,7 +131,7 @@ void main() {
       when(mockAuthRepository.getCurrentUser()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -146,7 +146,7 @@ void main() {
       when(mockAuthRepository.getCurrentUser()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);

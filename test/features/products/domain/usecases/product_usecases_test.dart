@@ -39,7 +39,7 @@ void main() {
       when(mockProductRepository.syncAllUserProducts(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response, result);
@@ -55,7 +55,7 @@ void main() {
       when(mockProductRepository.syncAllUserProducts(userId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(userId);
+      final response = await usecase.execute(userId);
 
       // assert
       expect(response, result);
@@ -98,7 +98,7 @@ void main() {
       ).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(params);
+      final response = await usecase.execute(params);
 
       // assert
       expect(response, result);
@@ -132,7 +132,7 @@ void main() {
       ).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(params);
+      final response = await usecase.execute(params);
 
       // assert
       expect(response.data, isEmpty);
@@ -172,7 +172,7 @@ void main() {
       when(mockProductRepository.getProduct(productId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(productId);
+      final response = await usecase.execute(productId);
 
       // assert
       expect(response, result);
@@ -189,7 +189,7 @@ void main() {
       when(mockProductRepository.getProduct(productId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(productId);
+      final response = await usecase.execute(productId);
 
       // assert
       expect(response.data, isNull);
@@ -213,7 +213,7 @@ void main() {
       when(mockProductRepository.createProduct(product)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(product);
+      final response = await usecase.execute(product);
 
       // assert
       expect(response, result);
@@ -230,7 +230,7 @@ void main() {
       when(mockProductRepository.createProduct(product)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(product);
+      final response = await usecase.execute(product);
 
       // assert
       expect(response.isFailure, true);
@@ -261,7 +261,7 @@ void main() {
       when(mockProductRepository.updateProduct(product)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(product);
+      final response = await usecase.execute(product);
 
       // assert
       expect(response, result);
@@ -286,7 +286,7 @@ void main() {
       when(mockProductRepository.updateProduct(product)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(product);
+      final response = await usecase.execute(product);
 
       // assert
       expect(response.isFailure, true);
@@ -309,7 +309,7 @@ void main() {
       when(mockProductRepository.deleteProduct(productId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(productId);
+      final response = await usecase.execute(productId);
 
       // assert
       expect(response, result);
@@ -326,7 +326,7 @@ void main() {
       when(mockProductRepository.deleteProduct(productId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(productId);
+      final response = await usecase.execute(productId);
 
       // assert
       expect(response.isFailure, true);
@@ -341,7 +341,7 @@ void main() {
       when(mockProductRepository.deleteProduct(productId)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(productId);
+      final response = await usecase.execute(productId);
 
       // assert
       expect(response.isFailure, true);

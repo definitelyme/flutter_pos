@@ -8,14 +8,15 @@ final transactionDetailNotifierProvider = NotifierProvider.autoDispose<Transacti
 );
 
 class TransactionDetailNotifier extends AutoDisposeNotifier<TransactionEntity?> {
+  GetTransactionUsecase get _getTransaction => getIt();
+
   @override
   TransactionEntity? build() {
     return null;
   }
 
   Future<TransactionEntity?> getTransactionDetail(int id) async {
-    final transactionRepository = ref.read(transactionRepositoryProvider);
-    var res = await GetTransactionUsecase(transactionRepository).call(id);
+    var res = await _getTransaction.execute(id);
 
     if (res.isSuccess) {
       state = res.data;

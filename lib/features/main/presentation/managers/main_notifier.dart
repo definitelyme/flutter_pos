@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_pos/core/domain/export.dart';
+import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
 import 'package:flutter_pos/core/sync/queued_action/domain/export.dart';
 import 'package:flutter_pos/features/account/domain/export.dart' hide AuthProvider;
@@ -18,6 +18,14 @@ final mainNotifierProvider = NotifierProvider<MainNotifier, MainState>(
 );
 
 class MainNotifier extends Notifier<MainState> {
+  DeviceInfoService get _deviceInfoService => getIt();
+  PingService get _pingService => getIt();
+  GetUserUsecase get _getUser => getIt();
+  SyncAllUserProductsUsecase get _syncAllUserProducts => getIt();
+  SyncAllUserTransactionsUsecase get _syncAllUserTransactions => getIt();
+  ExecuteAllQueuedActionUsecase get _executeAllQueuedAction => getIt();
+  GetAllQueuedActionUsecase get _getAllQueuedAction => getIt();
+
   @override
   MainState build() {
     return const MainState();
@@ -35,8 +43,8 @@ class MainNotifier extends Notifier<MainState> {
   }
 
   Future<void> startPingService() async {
-    final deviceInfoService = ref.read(deviceInfoServiceProvider);
-    final pingService = ref.read(pingServiceProvider);
+    final deviceInfoService = _deviceInfoService;
+    final pingService = _pingService;
 
     // Note: The ICMP protocol may not work on virtual devices
     final isPhysicalDevice = await deviceInfoService.checkDeviceType();
@@ -48,7 +56,7 @@ class MainNotifier extends Notifier<MainState> {
   }
 
   Future<void> checkAndSyncAllData() async {
-    final pingService = ref.read(pingServiceProvider);
+    final pingService = _pingService;
 
     // Prevent sync during first time app open
     if (!state.isLoaded || !pingService.isConnected) return;
@@ -78,15 +86,12 @@ class MainNotifier extends Notifier<MainState> {
 
   Future<void> getAndSyncAllUserData() async {
     final userId = _requireUserId();
-    final userRepository = ref.read(userRepositoryProvider);
-    final productRepository = ref.read(productRepositoryProvider);
-    final transactionRepository = ref.read(transactionRepositoryProvider);
 
     // Run multiple futures simultaneously
     var res = await Future.wait([
-      GetUserUsecase(userRepository).call(userId),
-      SyncAllUserProductsUsecase(productRepository).call(userId),
-      SyncAllUserTransactionsUsecase(transactionRepository).call(userId),
+      _getUser.execute(userId),
+      _syncAllUserProducts.execute(userId),
+      _syncAllUserTransactions.execute(userId),
     ]);
 
     // Set and notify user state
@@ -111,8 +116,7 @@ class MainNotifier extends Notifier<MainState> {
     var queuedActions = await getQueuedActions();
 
     if (queuedActions.isNotEmpty) {
-      final queuedActionRepository = ref.read(queuedActionRepositoryProvider);
-      var res = await ExecuteAllQueuedActionUsecase(queuedActionRepository).call(queuedActions);
+      var res = await _executeAllQueuedAction.execute(queuedActions);
 
       int executedCount = res.data?.where((e) => e).length ?? 0;
       return executedCount;
@@ -122,8 +126,7 @@ class MainNotifier extends Notifier<MainState> {
   }
 
   Future<List<QueuedActionEntity>> getQueuedActions() async {
-    final queuedActionRepository = ref.read(queuedActionRepositoryProvider);
-    var res = await GetAllQueuedActionUsecase(queuedActionRepository).call(NoParam());
+    var res = await _getAllQueuedAction.execute();
     return res.data ?? [];
   }
 

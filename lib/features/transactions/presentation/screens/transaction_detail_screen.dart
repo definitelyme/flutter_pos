@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/presentation/export.dart';
 import 'package:flutter_pos/features/transactions/domain/export.dart';
 import 'package:flutter_pos/features/transactions/presentation/export.dart';
@@ -14,11 +15,13 @@ class TransactionDetailScreen extends ConsumerWidget {
 
   const TransactionDetailScreen({super.key, required this.id});
 
+  PrinterService get _printerService => getIt();
+
   void _reprint(WidgetRef ref) async {
     final transaction = ref.read(transactionDetailNotifierProvider);
     if (transaction == null) return;
 
-    final result = await ref.read(printerServiceProvider).printTransaction(transaction);
+    final result = await _printerService.printTransaction(transaction);
 
     if (result.isFailure) {
       unawaited(AppSnackBar.showError(result.error.toString()));

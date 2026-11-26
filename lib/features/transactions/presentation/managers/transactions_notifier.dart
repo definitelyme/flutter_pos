@@ -11,6 +11,8 @@ final transactionsNotifierProvider = NotifierProvider<TransactionsNotifier, Tran
 );
 
 class TransactionsNotifier extends Notifier<TransactionsState> {
+  GetUserTransactionsUsecase get _getUserTransactions => getIt();
+
   @override
   TransactionsState build() {
     return const TransactionsState();
@@ -39,8 +41,7 @@ class TransactionsNotifier extends Notifier<TransactionsState> {
       contains: contains,
     );
 
-    final transactionRepository = ref.read(transactionRepositoryProvider);
-    var res = await GetUserTransactionsUsecase(transactionRepository).call(params);
+    var res = await _getUserTransactions.execute(params);
 
     if (res.isSuccess) {
       if (offset == null) {

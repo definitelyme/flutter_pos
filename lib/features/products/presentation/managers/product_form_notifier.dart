@@ -16,6 +16,12 @@ final productFormNotifierProvider = NotifierProvider.autoDispose<ProductFormNoti
 );
 
 class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
+  GetProductUsecase get _getProduct => getIt();
+  UploadProductImageUsecase get _uploadProductImage => getIt();
+  CreateProductUsecase get _createProduct => getIt();
+  UpdateProductUsecase get _updateProduct => getIt();
+  DeleteProductUsecase get _deleteProduct => getIt();
+
   @override
   ProductFormState build() {
     return const ProductFormState();
@@ -33,8 +39,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
       return;
     }
 
-    final productRepository = ref.read(productRepositoryProvider);
-    var res = await GetProductUsecase(productRepository).call(productId);
+    var res = await _getProduct.execute(productId);
 
     if (res.isSuccess) {
       var product = res.data;
@@ -55,13 +60,11 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
   Future<Result<int>> createProduct() async {
     try {
       final userId = _requireUserId();
-      final storageRepository = ref.read(storageRepositoryProvider);
-      final productRepository = ref.read(productRepositoryProvider);
 
       var imageUrl = state.imageUrl;
 
       if (state.imageFile != null) {
-        final res = await UploadProductImageUsecase(storageRepository).call(state.imageFile!.path);
+        final res = await _uploadProductImage.execute(state.imageFile!.path);
         imageUrl = res.data;
       }
 
@@ -76,7 +79,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
         description: state.description ?? '',
       );
 
-      var res = await CreateProductUsecase(productRepository).call(product);
+      var res = await _createProduct.execute(product);
 
       // Refresh products
       unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
@@ -90,13 +93,11 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
   Future<Result<void>> updatedProduct(int id) async {
     try {
       final userId = _requireUserId();
-      final storageRepository = ref.read(storageRepositoryProvider);
-      final productRepository = ref.read(productRepositoryProvider);
 
       var imageUrl = state.imageUrl;
 
       if (state.imageFile != null) {
-        final res = await UploadProductImageUsecase(storageRepository).call(state.imageFile!.path);
+        final res = await _uploadProductImage.execute(state.imageFile!.path);
         imageUrl = res.data;
       }
 
@@ -112,7 +113,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
         description: state.description ?? '',
       );
 
-      var res = await UpdateProductUsecase(productRepository).call(product);
+      var res = await _updateProduct.execute(product);
 
       // Refresh products
       unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());
@@ -125,8 +126,7 @@ class ProductFormNotifier extends AutoDisposeNotifier<ProductFormState> {
 
   Future<Result<void>> deleteProduct(int id) async {
     try {
-      final productRepository = ref.read(productRepositoryProvider);
-      var res = await DeleteProductUsecase(productRepository).call(id);
+      var res = await _deleteProduct.execute(id);
 
       // Refresh products
       unawaited(ref.read(productsNotifierProvider.notifier).getAllProducts());

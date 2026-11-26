@@ -55,7 +55,7 @@ void main() {
       when(mockQueuedActionRepository.getAllQueuedAction()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -70,7 +70,7 @@ void main() {
       when(mockQueuedActionRepository.getAllQueuedAction()).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(NoParam());
+      final response = await usecase.execute();
 
       // assert
       expect(response, result);
@@ -109,7 +109,7 @@ void main() {
       when(mockQueuedActionRepository.executeAllQueuedActions(queuedActions)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(queuedActions);
+      final response = await usecase.execute(queuedActions);
 
       // assert
       expect(response, result);
@@ -133,7 +133,7 @@ void main() {
       when(mockQueuedActionRepository.executeAllQueuedActions(queuedActions)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(queuedActions);
+      final response = await usecase.execute(queuedActions);
 
       // assert
       expect(response, result);

@@ -12,6 +12,8 @@ import 'package:flutter_pos/features/transactions/presentation/export.dart';
 import 'package:flutter_pos/features/welcome/presentation/export.dart';
 import 'package:flutter_pos/managers/export.dart';
 
+final appRoutesProvider = Provider<AppRoutes>((ref) => AppRoutes(ref));
+
 /// App routes
 class AppRoutes {
   final Ref _ref;

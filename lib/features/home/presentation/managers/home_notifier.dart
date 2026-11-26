@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:flutter_pos/core/data/export.dart';
 import 'package:flutter_pos/core/domain/export.dart';
 import 'package:flutter_pos/features/auth/presentation/export.dart';
 import 'package:flutter_pos/features/home/presentation/export.dart';
@@ -15,6 +16,9 @@ final homeNotifierProvider = NotifierProvider.autoDispose<HomeNotifier, HomeStat
 );
 
 class HomeNotifier extends AutoDisposeNotifier<HomeState> {
+  CreateTransactionUsecase get _createTransaction => getIt();
+  PrinterService get _printerService => getIt();
+
   @override
   HomeState build() {
     return const HomeState();
@@ -40,12 +44,11 @@ class HomeNotifier extends AutoDisposeNotifier<HomeState> {
         totalAmount: getTotalAmount(),
       );
 
-      final transactionRepository = ref.read(transactionRepositoryProvider);
-      var res = await CreateTransactionUsecase(transactionRepository).call(transaction);
+      var res = await _createTransaction.execute(transaction);
 
       if (res.isSuccess) {
         // Auto print receipt (fire-and-forget, ignore failure)
-        unawaited(ref.read(printerServiceProvider).printTransaction(transaction));
+        unawaited(_printerService.printTransaction(transaction));
       }
 
       // Refresh products

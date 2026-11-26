@@ -14,6 +14,10 @@ final accountNotifierProvider = NotifierProvider.autoDispose<AccountNotifier, Ac
 );
 
 class AccountNotifier extends AutoDisposeNotifier<AccountFormState> {
+  GetUserUsecase get _getUser => getIt();
+  UploadUserPhotoUsecase get _uploadUserPhoto => getIt();
+  UpateUserUsecase get _upateUser => getIt();
+
   @override
   AccountFormState build() {
     return const AccountFormState();
@@ -27,9 +31,8 @@ class AccountNotifier extends AutoDisposeNotifier<AccountFormState> {
 
   Future<void> initProfileForm() async {
     final userId = _requireUserId();
-    final userRepository = ref.read(userRepositoryProvider);
 
-    var res = await GetUserUsecase(userRepository).call(userId);
+    var res = await _getUser.execute(userId);
 
     if (res.isSuccess) {
       state = state.copyWith(
@@ -47,13 +50,11 @@ class AccountNotifier extends AutoDisposeNotifier<AccountFormState> {
   Future<Result<void>> updatedUser() async {
     try {
       final userId = _requireUserId();
-      final storageRepository = ref.read(storageRepositoryProvider);
-      final userRepository = ref.read(userRepositoryProvider);
 
       var imageUrl = state.imageUrl;
 
       if (state.imageFile != null) {
-        final res = await UploadUserPhotoUsecase(storageRepository).call(state.imageFile!.path);
+        final res = await _uploadUserPhoto.execute(state.imageFile!.path);
         imageUrl = res.data;
       }
 
@@ -65,7 +66,7 @@ class AccountNotifier extends AutoDisposeNotifier<AccountFormState> {
         imageUrl: imageUrl ?? '',
       );
 
-      var res = await UpateUserUsecase(userRepository).call(user);
+      var res = await _upateUser.execute(user);
 
       return res;
     } catch (e) {

@@ -37,7 +37,7 @@ void main() {
       when(mockStorageRepository.uploadUserPhoto(imgPath)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(imgPath);
+      final response = await usecase.execute(imgPath);
 
       // assert
       expect(response, result);
@@ -53,7 +53,7 @@ void main() {
       when(mockStorageRepository.uploadUserPhoto(imgPath)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(imgPath);
+      final response = await usecase.execute(imgPath);
 
       // assert
       expect(response, result);
@@ -78,7 +78,7 @@ void main() {
       when(mockStorageRepository.uploadProductImage(imgPath)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(imgPath);
+      final response = await usecase.execute(imgPath);
 
       // assert
       expect(response, result);
@@ -94,7 +94,7 @@ void main() {
       when(mockStorageRepository.uploadProductImage(imgPath)).thenAnswer((_) async => result);
 
       // act
-      final response = await usecase.call(imgPath);
+      final response = await usecase.execute(imgPath);
 
       // assert
       expect(response, result);

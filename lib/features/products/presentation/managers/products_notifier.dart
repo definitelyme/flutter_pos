@@ -11,6 +11,8 @@ final productsNotifierProvider = NotifierProvider<ProductsNotifier, ProductsStat
 );
 
 class ProductsNotifier extends Notifier<ProductsState> {
+  GetUserProductsUsecase get _getUserProducts => getIt();
+
   @override
   ProductsState build() {
     return const ProductsState();
@@ -39,8 +41,7 @@ class ProductsNotifier extends Notifier<ProductsState> {
       contains: contains,
     );
 
-    final productRepository = ref.read(productRepositoryProvider);
-    var res = await GetUserProductsUsecase(productRepository).call(params);
+    var res = await _getUserProducts.execute(params);
 
     if (res.isSuccess) {
       if (offset == null) {

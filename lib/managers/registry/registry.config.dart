@@ -30,6 +30,10 @@ import 'package:flutter_pos/core/storage/data/repositories/storage_repository_im
 import 'package:flutter_pos/core/storage/data/sources/storage_remote_datasource_impl.dart'
     as _i825;
 import 'package:flutter_pos/core/storage/domain/export.dart' as _i641;
+import 'package:flutter_pos/core/storage/domain/usecases/upload_product_image_usecase.dart'
+    as _i1002;
+import 'package:flutter_pos/core/storage/domain/usecases/upload_user_photo_usecase.dart'
+    as _i26;
 import 'package:flutter_pos/core/sync/queued_action/data/export.dart' as _i649;
 import 'package:flutter_pos/core/sync/queued_action/data/repositories/queued_action_repository_impl.dart'
     as _i565;
@@ -37,6 +41,10 @@ import 'package:flutter_pos/core/sync/queued_action/data/sources/queued_action_l
     as _i375;
 import 'package:flutter_pos/core/sync/queued_action/domain/export.dart'
     as _i550;
+import 'package:flutter_pos/core/sync/queued_action/domain/usecases/execute_all_queued_action_usecase.dart'
+    as _i977;
+import 'package:flutter_pos/core/sync/queued_action/domain/usecases/get_all_queued_action_usecase.dart'
+    as _i1012;
 import 'package:flutter_pos/features/account/data/export.dart' as _i526;
 import 'package:flutter_pos/features/account/data/repositories/user_repository_impl.dart'
     as _i912;
@@ -45,12 +53,26 @@ import 'package:flutter_pos/features/account/data/sources/user_local_datasource_
 import 'package:flutter_pos/features/account/data/sources/user_remote_datasource_impl.dart'
     as _i340;
 import 'package:flutter_pos/features/account/domain/export.dart' as _i83;
+import 'package:flutter_pos/features/account/domain/usecases/create_user_usecase.dart'
+    as _i199;
+import 'package:flutter_pos/features/account/domain/usecases/delete_user_usecase.dart'
+    as _i479;
+import 'package:flutter_pos/features/account/domain/usecases/get_user_usecase.dart'
+    as _i267;
+import 'package:flutter_pos/features/account/domain/usecases/upate_user_usecase.dart'
+    as _i256;
 import 'package:flutter_pos/features/auth/data/export.dart' as _i494;
 import 'package:flutter_pos/features/auth/data/repositories/auth_repository_impl.dart'
     as _i458;
 import 'package:flutter_pos/features/auth/data/sources/auth_remote_datasource_impl.dart'
     as _i675;
 import 'package:flutter_pos/features/auth/domain/export.dart' as _i247;
+import 'package:flutter_pos/features/auth/domain/usecases/get_current_user_usecase.dart'
+    as _i129;
+import 'package:flutter_pos/features/auth/domain/usecases/sign_in_with_google_usecase.dart'
+    as _i814;
+import 'package:flutter_pos/features/auth/domain/usecases/sign_out_usecase.dart'
+    as _i909;
 import 'package:flutter_pos/features/products/data/export.dart' as _i152;
 import 'package:flutter_pos/features/products/data/repositories/product_repository_impl.dart'
     as _i848;
@@ -59,6 +81,18 @@ import 'package:flutter_pos/features/products/data/sources/product_local_datasou
 import 'package:flutter_pos/features/products/data/sources/product_remote_datasource_impl.dart'
     as _i829;
 import 'package:flutter_pos/features/products/domain/export.dart' as _i60;
+import 'package:flutter_pos/features/products/domain/usecases/create_product_usecase.dart'
+    as _i138;
+import 'package:flutter_pos/features/products/domain/usecases/delete_product_usecase.dart'
+    as _i685;
+import 'package:flutter_pos/features/products/domain/usecases/get_product_usecase.dart'
+    as _i422;
+import 'package:flutter_pos/features/products/domain/usecases/get_user_products_usecase.dart'
+    as _i896;
+import 'package:flutter_pos/features/products/domain/usecases/sync_all_user_products_usecase.dart'
+    as _i369;
+import 'package:flutter_pos/features/products/domain/usecases/update_product_usecase.dart'
+    as _i478;
 import 'package:flutter_pos/features/transactions/data/export.dart' as _i171;
 import 'package:flutter_pos/features/transactions/data/repositories/transaction_repository_impl.dart'
     as _i172;
@@ -67,6 +101,18 @@ import 'package:flutter_pos/features/transactions/data/sources/transaction_local
 import 'package:flutter_pos/features/transactions/data/sources/transaction_remote_datasource_impl.dart'
     as _i699;
 import 'package:flutter_pos/features/transactions/domain/export.dart' as _i813;
+import 'package:flutter_pos/features/transactions/domain/usecases/create_transaction_usecase.dart'
+    as _i109;
+import 'package:flutter_pos/features/transactions/domain/usecases/delete_transaction_usecase.dart'
+    as _i301;
+import 'package:flutter_pos/features/transactions/domain/usecases/get_transaction_usecase.dart'
+    as _i373;
+import 'package:flutter_pos/features/transactions/domain/usecases/get_user_transactions_usecase.dart'
+    as _i889;
+import 'package:flutter_pos/features/transactions/domain/usecases/sync_all_user_transactions_usecase.dart'
+    as _i1007;
+import 'package:flutter_pos/features/transactions/domain/usecases/upate_transaction_usecase.dart'
+    as _i353;
 import 'package:flutter_pos/managers/registry/modules/modules.dart' as _i505;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
@@ -158,6 +204,15 @@ extension GetItInjectableX on _i174.GetIt {
         queuedActionLocalDatasource: gh<_i649.QueuedActionDatasource>(),
       ),
     );
+    gh.factory<_i129.GetCurrentUserUsecase>(
+      () => _i129.GetCurrentUserUsecase(gh<_i247.AuthRepository>()),
+    );
+    gh.factory<_i814.SignInWithGoogleUsecase>(
+      () => _i814.SignInWithGoogleUsecase(gh<_i247.AuthRepository>()),
+    );
+    gh.factory<_i909.SignOutUsecase>(
+      () => _i909.SignOutUsecase(gh<_i247.AuthRepository>()),
+    );
     gh.lazySingleton<_i83.UserRepository>(
       () => _i912.UserRepositoryImpl(
         pingService: gh<_i167.PingService>(),
@@ -165,6 +220,18 @@ extension GetItInjectableX on _i174.GetIt {
         userRemoteDatasource: gh<_i526.UserRemoteDatasource>(),
         queuedActionLocalDatasource: gh<_i649.QueuedActionDatasource>(),
       ),
+    );
+    gh.factory<_i199.CreateUserUsecase>(
+      () => _i199.CreateUserUsecase(gh<_i83.UserRepository>()),
+    );
+    gh.factory<_i479.DeleteUserUsecase>(
+      () => _i479.DeleteUserUsecase(gh<_i83.UserRepository>()),
+    );
+    gh.factory<_i267.GetUserUsecase>(
+      () => _i267.GetUserUsecase(gh<_i83.UserRepository>()),
+    );
+    gh.factory<_i256.UpateUserUsecase>(
+      () => _i256.UpateUserUsecase(gh<_i83.UserRepository>()),
     );
     gh.lazySingleton<_i550.QueuedActionRepository>(
       () => _i565.QueuedActionRepositoryImpl(
@@ -174,6 +241,35 @@ extension GetItInjectableX on _i174.GetIt {
         transactionRemoteDatasource: gh<_i171.TransactionRemoteDatasource>(),
         productRemoteDatasource: gh<_i152.ProductRemoteDatasource>(),
       ),
+    );
+    gh.factory<_i977.ExecuteAllQueuedActionUsecase>(
+      () => _i977.ExecuteAllQueuedActionUsecase(
+        gh<_i550.QueuedActionRepository>(),
+      ),
+    );
+    gh.factory<_i1012.GetAllQueuedActionUsecase>(
+      () =>
+          _i1012.GetAllQueuedActionUsecase(gh<_i550.QueuedActionRepository>()),
+    );
+    gh.factory<_i109.CreateTransactionUsecase>(
+      () => _i109.CreateTransactionUsecase(gh<_i813.TransactionRepository>()),
+    );
+    gh.factory<_i301.DeleteTransactionUsecase>(
+      () => _i301.DeleteTransactionUsecase(gh<_i813.TransactionRepository>()),
+    );
+    gh.factory<_i373.GetTransactionUsecase>(
+      () => _i373.GetTransactionUsecase(gh<_i813.TransactionRepository>()),
+    );
+    gh.factory<_i889.GetUserTransactionsUsecase>(
+      () => _i889.GetUserTransactionsUsecase(gh<_i813.TransactionRepository>()),
+    );
+    gh.factory<_i1007.SyncAllUserTransactionsUsecase>(
+      () => _i1007.SyncAllUserTransactionsUsecase(
+        gh<_i813.TransactionRepository>(),
+      ),
+    );
+    gh.factory<_i353.UpateTransactionUsecase>(
+      () => _i353.UpateTransactionUsecase(gh<_i813.TransactionRepository>()),
     );
     gh.lazySingleton<_i60.ProductRepository>(
       () => _i848.ProductRepositoryImpl(
@@ -188,6 +284,30 @@ extension GetItInjectableX on _i174.GetIt {
         pingService: gh<_i167.PingService>(),
         storageRemoteDataSource: gh<_i1067.StorageDataSource>(),
       ),
+    );
+    gh.factory<_i138.CreateProductUsecase>(
+      () => _i138.CreateProductUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i685.DeleteProductUsecase>(
+      () => _i685.DeleteProductUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i422.GetProductUsecase>(
+      () => _i422.GetProductUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i896.GetUserProductsUsecase>(
+      () => _i896.GetUserProductsUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i369.SyncAllUserProductsUsecase>(
+      () => _i369.SyncAllUserProductsUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i478.UpdateProductUsecase>(
+      () => _i478.UpdateProductUsecase(gh<_i60.ProductRepository>()),
+    );
+    gh.factory<_i1002.UploadProductImageUsecase>(
+      () => _i1002.UploadProductImageUsecase(gh<_i641.StorageRepository>()),
+    );
+    gh.factory<_i26.UploadUserPhotoUsecase>(
+      () => _i26.UploadUserPhotoUsecase(gh<_i641.StorageRepository>()),
     );
     return this;
   }

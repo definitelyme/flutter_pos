@@ -14,6 +14,11 @@ final authNotifierProvider = NotifierProvider<AuthNotifier, AuthState>(
 );
 
 class AuthNotifier extends Notifier<AuthState> {
+  GetCurrentUserUsecase get _getCurrentUser => getIt();
+  SignInWithGoogleUsecase get _signInWithGoogle => getIt();
+  CreateUserUsecase get _createUser => getIt();
+  SignOutUsecase get _signOut => getIt();
+
   @override
   AuthState build() {
     unawaited(_initialize());
@@ -22,8 +27,7 @@ class AuthNotifier extends Notifier<AuthState> {
 
   Future<void> _initialize() async {
     try {
-      final authRepository = ref.read(authRepositoryProvider);
-      final res = await GetCurrentUserUsecase(authRepository).call(NoParam());
+      final res = await _getCurrentUser.execute();
 
       final user = res.data;
       cl('isAuthenticated: ${user != null}');
@@ -35,13 +39,10 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<Result<String>> signIn() async {
-    final authRepository = ref.read(authRepositoryProvider);
-    final userRepository = ref.read(userRepositoryProvider);
-
-    var res = await SignInWithGoogleUsecase(authRepository).call(NoParam());
+    var res = await _signInWithGoogle.execute();
     if (res.isFailure) return Result.failure(error: res.error!);
 
-    var createRes = await CreateUserUsecase(userRepository).call(res.data!);
+    var createRes = await _createUser.execute(res.data!);
     if (createRes.isFailure) return Result.failure(error: createRes.error!);
 
     state = AuthState(user: res.data!);
@@ -50,9 +51,7 @@ class AuthNotifier extends Notifier<AuthState> {
   }
 
   Future<Result<void>> signOut() async {
-    final authRepository = ref.read(authRepositoryProvider);
-
-    final res = await SignOutUsecase(authRepository).call(NoParam());
+    final res = await _signOut.execute();
     if (res.isFailure) return Result.failure(error: res.error!);
 
     state = const AuthState();

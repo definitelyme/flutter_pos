@@ -1,4 +1,9 @@
 export 'package:flutter_pos/features/transactions/domain/entities/ordered_product_entity.dart';
 export 'package:flutter_pos/features/transactions/domain/entities/transaction_entity.dart';
 export 'package:flutter_pos/features/transactions/domain/repositories/transaction_repository.dart';
-export 'package:flutter_pos/features/transactions/domain/usecases/transaction_usecases.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/create_transaction_usecase.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/delete_transaction_usecase.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/get_transaction_usecase.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/get_user_transactions_usecase.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/sync_all_user_transactions_usecase.dart';
+export 'package:flutter_pos/features/transactions/domain/usecases/upate_transaction_usecase.dart';
